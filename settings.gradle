@@ -1,2 +1,3 @@
 rootProject.name = 'tmdb-test-project'
+include 'api-tests'
 
