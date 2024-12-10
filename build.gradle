@@ -11,7 +11,9 @@ repositories {
 
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation group: 'org.testng', name: 'testng', version: '7.10.2'
+    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '5.5.0'
+    implementation group: 'org.springframework.boot', name: 'spring-boot', version: '3.4.0'
 }
 
 test {
