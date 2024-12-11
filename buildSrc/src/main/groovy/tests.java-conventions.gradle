@@ -1,0 +1,15 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.themoviedb'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation group: 'org.springframework.boot', name: 'spring-boot', version: '3.4.0'
+    testImplementation group: 'org.testng', name: 'testng', version: '7.10.2'
+}
