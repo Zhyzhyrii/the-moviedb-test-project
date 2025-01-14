@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+cd "$(git rev-parse --show-toplevel)"
+
+CHANGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep "\.java$")
+
+if [ -z "$CHANGED_FILES" ]; then
+    exit 0
+fi
+
+echo "$CHANGED_FILES" > .pmd_file_list.txt
+
+RESULT=$(pmd check --file-list .pmd_file_list.txt --rulesets config/pmd/pmd-ruleset.xml --format text 2>&1 --no-progress)
+
+rm .pmd_file_list.txt
+
+if [ -n "$RESULT" ]; then
+echo "PMD detected issues in code 2:"
+echo "$RESULT"
+echo "Commit canceled. Please fix the listed issues and try again."
+    exit 1
+fi
+
+exit 0
