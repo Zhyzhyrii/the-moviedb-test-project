@@ -10,15 +10,23 @@ fi
 
 echo "$CHANGED_FILES" > .pmd_file_list.txt
 
-RESULT=$(pmd check --file-list .pmd_file_list.txt --rulesets config/pmd/pmd-ruleset.xml --format text 2>&1 --no-progress)
+RESULT=$(pmd check --file-list .pmd_file_list.txt --rulesets config/pmd/pmd-ruleset.xml --format text 2>&1 --no-progress --fail-on-violation)
+EXIT_CODE=$?
+echo "PMD exited with code=$EXIT_CODE"
 
 rm .pmd_file_list.txt
 
-if [ -n "$RESULT" ]; then
-echo "PMD detected issues in code 2:"
-echo "$RESULT"
-echo "Commit canceled. Please fix the listed issues and try again."
-    exit 1
+if [ "$EXIT_CODE" -eq 0 ]; then
+  echo "PMD: no violations."
+    exit 0
+else
+  echo "PMD detected issues in code. PMD exited with code=$EXIT_CODE"
+  echo "Result:"
+  echo "*****************"
+  echo "$RESULT"
+  echo "*****************"
+  echo "Commit canceled. Please fix the listed issues and try again."
+  exit 1
 fi
 
 exit 0

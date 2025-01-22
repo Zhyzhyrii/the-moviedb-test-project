@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'tests.java-conventions'
 }
 
 group = 'org.themoviedb'
@@ -10,9 +11,11 @@ repositories {
 }
 
 dependencies {
-    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '5.5.0'
+    implementation group: 'io.rest-assured', name: 'rest-assured', version: '5.5.0'
 }
 
 test {
-    useJUnitPlatform()
+    useTestNG() {
+        useDefaultListeners = true
+    }
 }

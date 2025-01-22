@@ -6,10 +6,53 @@
     <description>Ruleset</description>
 
     <rule ref="category/java/bestpractices.xml"/>
-    <rule ref="category/java/codestyle.xml"/>
+    <rule ref="category/java/codestyle.xml">
+        <exclude name="UseExplicitTypes"/>
+        <exclude name="ShortVariable"/>
+        <exclude name="AtLeastOneConstructor"/>
+        <exclude name="LocalVariableCouldBeFinal"/>
+        <exclude name="LongVariable"/>
+    </rule>
+
+    <rule ref="category/java/codestyle.xml/ShortVariable">
+        <properties>
+            <property name="minimum" type="Integer" value="3" min="1" max="100"
+                      description="Number of characters that are required as a minimum for a variable name."/>
+            <property name="xpath">
+                <value>
+                    <![CDATA[
+//VariableId[(string-length(@Name) < $minimum) and (not(@Name = 'id'))]
+ (: ForStatement :)
+ [not(../../parent::ForInit)]
+ (: Foreach statement :)
+ [not(../../parent::ForeachStatement)]
+ (: Catch statement parameter :)
+ [not(parent::CatchParameter)]
+ (: Lambda expression parameter :)
+ [not(parent::LambdaParameter)]
+]]>
+                </value>
+            </property>
+        </properties>
+    </rule>
+
+    <rule ref="category/java/codestyle.xml/LongVariable">
+        <properties>
+            <property name="minimum" value="30"/>
+        </properties>
+    </rule>
+
     <rule ref="category/java/design.xml">
         <exclude name="LoosePackageCoupling"/>
+        <exclude name="LawOfDemeter"/>
     </rule>
+
+    <rule ref="category/java/design.xml/LawOfDemeter">
+        <properties>
+            <property name="trustRadius" value="3"/>
+        </properties>
+    </rule>
+
     <rule ref="category/java/errorprone.xml"/>
     <rule ref="category/java/multithreading.xml"/>
     <rule ref="category/java/performance.xml"/>
