@@ -1,6 +1,6 @@
 package org.themoviedb.controllers;
 
-import org.themoviedb.models.Movie;
+import org.themoviedb.models.MediaToWatchList;
 import org.themoviedb.models.MovieList;
 
 public class AccountController extends BaseController {
@@ -17,13 +17,11 @@ public class AccountController extends BaseController {
     }
 
     //    TODO account id should be provided by the user
-//    TODO body as an object should be provided
-    public void updateWatchlist(final Movie movie,
-                                final boolean watchlist,
+    public void updateWatchlist(final MediaToWatchList body,
                                 final int statusCode) {
         baseClient()
                 .pathParam("accountId", 8_564_434)
-                .body("{\"media_type\":\"movie\",\"media_id\":" + movie.getId() + ",\"watchlist\":" + watchlist + "}")
+                .body(body)
                 .post("/account/{accountId}/watchlist")
                 .then()
                 .statusCode(statusCode);
