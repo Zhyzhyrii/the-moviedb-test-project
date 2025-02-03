@@ -1,22 +1,22 @@
 package org.themoviedb.steps;
 
 import org.themoviedb.facades.AccountControllerFacade;
-import org.themoviedb.models.Movie;
+import org.themoviedb.models.MovieDto;
 
 public class AccountSteps {
 
     private final AccountControllerFacade accountControllerFacade = new AccountControllerFacade();
 
-    public AccountSteps addMovieToWatchlist(final Movie movie) {
-        accountControllerFacade.addMovieToWatchlist(movie);
+    public AccountSteps addMovieToWatchlist(final MovieDto movieDto) {
+        accountControllerFacade.addMovieToWatchlist(movieDto);
         return this;
     }
 
-    public void removeMovieFromWatchlist(final Movie movie) {
-        accountControllerFacade.removeMovieFromWatchlist(movie);
+    public void removeMovieFromWatchlist(final MovieDto movieDto) {
+        accountControllerFacade.removeMovieFromWatchlist(movieDto);
     }
 
-    public Movie getFirstWatchlistMovie() {
+    public MovieDto getFirstWatchlistMovie() {
         return accountControllerFacade.getFirstWatchlistMovie();
     }
 }

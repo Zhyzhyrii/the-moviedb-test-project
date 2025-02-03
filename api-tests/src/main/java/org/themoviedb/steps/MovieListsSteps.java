@@ -1,13 +1,13 @@
 package org.themoviedb.steps;
 
 import org.themoviedb.facades.MovieListsControllerFacade;
-import org.themoviedb.models.Movie;
+import org.themoviedb.models.MovieDto;
 
 public class MovieListsSteps {
 
     private final MovieListsControllerFacade movieListsControllerFacade = new MovieListsControllerFacade();
 
-    public Movie getRandomTopRatedMovie() {
+    public MovieDto getRandomTopRatedMovie() {
         return movieListsControllerFacade.getRandomTopRatedMovie();
     }
 }

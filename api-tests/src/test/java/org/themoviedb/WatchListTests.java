@@ -4,7 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.themoviedb.models.Movie;
+import org.themoviedb.models.MovieDto;
 import org.themoviedb.steps.AccountSteps;
 import org.themoviedb.steps.MovieListsSteps;
 
@@ -12,23 +12,23 @@ public class WatchListTests {
 
     private final MovieListsSteps movieListsSteps = new MovieListsSteps();
     private final AccountSteps accountSteps = new AccountSteps();
-    private Movie randomMovie;
+    private MovieDto randomMovieDto;
 
     @BeforeMethod
     public void setUp() {
-        randomMovie = movieListsSteps.getRandomTopRatedMovie();
+        randomMovieDto = movieListsSteps.getRandomTopRatedMovie();
     }
 
     @Test
     public void addRandomMovieFromTopRatedToWatchListAndVerifyThatItWasAdded() {
         var actualMovie = accountSteps
-                .addMovieToWatchlist(randomMovie)
+                .addMovieToWatchlist(randomMovieDto)
                 .getFirstWatchlistMovie();
-        Assert.assertEquals(actualMovie, randomMovie, "Wrong movie was added to watchlist");
+        Assert.assertEquals(actualMovie, randomMovieDto, "Wrong movie was added to watchlist");
     }
 
     @AfterMethod
     public void tearDown() {
-        accountSteps.removeMovieFromWatchlist(randomMovie);
+        accountSteps.removeMovieFromWatchlist(randomMovieDto);
     }
 }

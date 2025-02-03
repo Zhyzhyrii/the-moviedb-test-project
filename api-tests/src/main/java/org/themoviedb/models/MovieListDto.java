@@ -7,6 +7,6 @@ import java.util.List;
 
 @Value
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MovieList {
-    List<Movie> results;
+public class MovieListDto {
+    List<MovieDto> results;
 }
