@@ -6,7 +6,7 @@ import lombok.Value;
 
 @Value
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Movie {
+public class MovieDto {
     Long id;
 
     @JsonProperty("original_title")

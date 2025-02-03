@@ -1,23 +1,23 @@
 package org.themoviedb.data.requests;
 
-import org.themoviedb.models.MediaToWatchList;
-import org.themoviedb.models.Movie;
+import org.themoviedb.models.MediaToWatchListDto;
+import org.themoviedb.models.MovieDto;
 
 import static org.themoviedb.data.enums.MediaType.MOVIE;
 
 public class UpdateWatchListRequestTemplate {
 
-    public MediaToWatchList createAddMovieToWatchListRequest(final Movie movie) {
-        return createMovieToWatchListRequest(movie.getId(), true);
+    public MediaToWatchListDto createAddMovieToWatchListRequest(final MovieDto movieDto) {
+        return createMovieToWatchListRequest(movieDto.getId(), true);
     }
 
-    public MediaToWatchList createRemoveMovieFromWatchListRequest(final Movie movie) {
-        return createMovieToWatchListRequest(movie.getId(), false);
+    public MediaToWatchListDto createRemoveMovieFromWatchListRequest(final MovieDto movieDto) {
+        return createMovieToWatchListRequest(movieDto.getId(), false);
     }
 
-    private MediaToWatchList createMovieToWatchListRequest(final Long mediaId,
-                                                           final Boolean watchlist) {
-        return MediaToWatchList.builder()
+    private MediaToWatchListDto createMovieToWatchListRequest(final Long mediaId,
+                                                              final Boolean watchlist) {
+        return MediaToWatchListDto.builder()
                 .mediaType(MOVIE.getName())
                 .mediaId(mediaId)
                 .watchlist(watchlist)

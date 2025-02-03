@@ -6,7 +6,7 @@ import lombok.ToString;
 
 @Builder
 @ToString
-public class MediaToWatchList {
+public class MediaToWatchListDto {
 
     @JsonProperty("media_type")
     private final String mediaType;

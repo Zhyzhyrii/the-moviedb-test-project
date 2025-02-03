@@ -1,15 +1,15 @@
 package org.themoviedb.controllers;
 
-import org.themoviedb.models.MovieList;
+import org.themoviedb.models.MovieListDto;
 
 public class MovieListsController extends BaseController {
 
-    public MovieList getTopRatedMovies() {
+    public MovieListDto getTopRatedMovies() {
         return baseClient()
                 .get("/movie/top_rated")
                 .then()
                 .statusCode(200)
                 .extract()
-                .as(MovieList.class);
+                .as(MovieListDto.class);
     }
 }

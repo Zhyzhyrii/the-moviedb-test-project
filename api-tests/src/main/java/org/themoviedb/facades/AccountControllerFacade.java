@@ -2,7 +2,8 @@ package org.themoviedb.facades;
 
 import org.themoviedb.controllers.AccountController;
 import org.themoviedb.data.requests.UpdateWatchListRequestTemplate;
-import org.themoviedb.models.Movie;
+import org.themoviedb.models.MovieDto;
+import org.themoviedb.models.PostResponseDto;
 
 import java.util.List;
 
@@ -11,21 +12,21 @@ public class AccountControllerFacade {
     private final AccountController accountController = new AccountController();
     private final UpdateWatchListRequestTemplate updateWatchListRequestTemplate = new UpdateWatchListRequestTemplate();
 
-    public void addMovieToWatchlist(final Movie movie) {
-        var body = updateWatchListRequestTemplate.createAddMovieToWatchListRequest(movie);
-        accountController.updateWatchlist(body, 201);
+    public PostResponseDto addMovieToWatchlist(final MovieDto movieDto) {
+        var body = updateWatchListRequestTemplate.createAddMovieToWatchListRequest(movieDto);
+        return accountController.updateWatchlist(body, 201);
     }
 
-    public void removeMovieFromWatchlist(final Movie movie) {
-        var body = updateWatchListRequestTemplate.createRemoveMovieFromWatchListRequest(movie);
-        accountController.updateWatchlist(body, 200);
+    public PostResponseDto removeMovieFromWatchlist(final MovieDto movieDto) {
+        var body = updateWatchListRequestTemplate.createRemoveMovieFromWatchListRequest(movieDto);
+        return accountController.updateWatchlist(body, 200);
     }
 
-    public Movie getFirstWatchlistMovie() {
+    public MovieDto getFirstWatchlistMovie() {
         return getWatchListMovies().getFirst();
     }
 
-    private List<Movie> getWatchListMovies() {
+    private List<MovieDto> getWatchListMovies() {
         return accountController.getWatchlistMovies()
                 .getResults();
     }
