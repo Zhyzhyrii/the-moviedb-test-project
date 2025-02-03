@@ -2,6 +2,7 @@ package org.themoviedb.controllers;
 
 import org.themoviedb.models.MediaToWatchListDto;
 import org.themoviedb.models.MovieListDto;
+import org.themoviedb.models.PostResponseDto;
 
 public class AccountController extends BaseController {
 
@@ -17,13 +18,15 @@ public class AccountController extends BaseController {
     }
 
     //    TODO account id should be provided by the user
-    public void updateWatchlist(final MediaToWatchListDto body,
-                                final int statusCode) {
-        baseClient()
+    public PostResponseDto updateWatchlist(final MediaToWatchListDto body,
+                                           final int statusCode) {
+        return baseClient()
                 .pathParam("accountId", 8_564_434)
                 .body(body)
                 .post("/account/{accountId}/watchlist")
                 .then()
-                .statusCode(statusCode);
+                .statusCode(statusCode)
+                .extract()
+                .as(PostResponseDto.class);
     }
 }
