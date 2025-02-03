@@ -1,4 +1,4 @@
-package org.themoviedb;
+package org.themoviedb.watchlist;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -7,7 +7,7 @@ import org.themoviedb.models.MovieDto;
 import org.themoviedb.steps.AccountSteps;
 import org.themoviedb.steps.MovieListsSteps;
 
-public class WatchListTests {
+public class WatchListHappyPathTests {
 
     private final MovieListsSteps movieListsSteps = new MovieListsSteps();
     private final AccountSteps accountSteps = new AccountSteps();
