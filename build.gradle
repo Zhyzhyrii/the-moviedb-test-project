@@ -6,7 +6,7 @@ allprojects {
     apply plugin: 'pmd'
 
     pmd {
-        toolVersion = '7.8.0'
+        toolVersion = '7.9.0'
         ruleSetFiles = files("$rootDir/config/pmd/pmd-ruleset.xml")
         ignoreFailures = true
     }

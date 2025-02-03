@@ -11,5 +11,8 @@ repositories {
 
 dependencies {
     implementation group: 'org.springframework.boot', name: 'spring-boot', version: '3.4.0'
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.18.2'
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.36'
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.36'
     testImplementation group: 'org.testng', name: 'testng', version: '7.10.2'
 }
