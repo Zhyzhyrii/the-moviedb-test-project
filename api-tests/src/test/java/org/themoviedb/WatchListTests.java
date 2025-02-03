@@ -1,6 +1,5 @@
 package org.themoviedb;
 
-import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -21,10 +20,14 @@ public class WatchListTests {
 
     @Test
     public void addRandomMovieFromTopRatedToWatchListAndVerifyThatItWasAdded() {
-        var actualMovie = accountSteps
+        accountSteps
                 .addMovieToWatchlist(randomMovieDto)
-                .getFirstWatchlistMovie();
-        Assert.assertEquals(actualMovie, randomMovieDto, "Wrong movie was added to watchlist");
+                .assertThat()
+                .movieIsAddedCorrectly();
+
+        accountSteps.getFirstWatchlistMovie()
+                .assertThat()
+                .watchListContainsExpectedMovie(randomMovieDto);
     }
 
     @AfterMethod

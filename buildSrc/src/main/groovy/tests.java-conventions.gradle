@@ -15,4 +15,5 @@ dependencies {
     compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.36'
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.36'
     testImplementation group: 'org.testng', name: 'testng', version: '7.10.2'
+    implementation group: 'org.assertj', name: 'assertj-core', version: '3.27.3'
 }
