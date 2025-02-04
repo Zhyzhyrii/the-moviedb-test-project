@@ -7,7 +7,7 @@ import org.themoviedb.models.MovieDto;
 import org.themoviedb.steps.AccountSteps;
 import org.themoviedb.steps.MovieListsSteps;
 
-public class WatchListHappyPathTests {
+public class AddMovieWatchListHappyPathTests {
 
     private final MovieListsSteps movieListsSteps = new MovieListsSteps();
     private final AccountSteps accountSteps = new AccountSteps();
@@ -19,15 +19,20 @@ public class WatchListHappyPathTests {
     }
 
     @Test
-    public void addRandomMovieFromTopRatedToWatchListAndVerifyThatItWasAdded() {
+    public void addRandomMovieFromTopRatedToWatchlistAndVerifyPresence() {
+        accountSteps
+                .addMovieToWatchlist(randomMovieDto)
+                .getFirstWatchlistMovie()
+                .assertThat()
+                .watchListContainsExpectedMovie(randomMovieDto);
+    }
+
+    @Test
+    public void addRandomMovieFromTopRatedToWatchlistAndVerifySuccessfulResponse() {
         accountSteps
                 .addMovieToWatchlist(randomMovieDto)
                 .assertThat()
-                .movieIsAddedCorrectly();
-
-        accountSteps.getFirstWatchlistMovie()
-                .assertThat()
-                .watchListContainsExpectedMovie(randomMovieDto);
+                .addMovieResponseIsSuccessful();
     }
 
     @AfterMethod

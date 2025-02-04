@@ -11,7 +11,7 @@ public class AccountAsserts {
     private PostResponseDto postResponseDto;
     private MovieDto movieDto;
 
-    public void movieIsAddedCorrectly() {
+    public void addMovieResponseIsSuccessful() {
 //        TODO: to ResponseTemplate
         var expected = PostResponseDto.builder()
                 .success(true)
