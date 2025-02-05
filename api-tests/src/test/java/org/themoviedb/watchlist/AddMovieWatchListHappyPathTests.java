@@ -19,24 +19,24 @@ public class AddMovieWatchListHappyPathTests {
     }
 
     @Test
-    public void addRandomMovieFromTopRatedToWatchlistAndVerifyPresence() {
-        accountSteps
-                .addMovieToWatchlist(randomMovieDto)
-                .getFirstWatchlistMovie()
-                .assertThat()
-                .watchListContainsExpectedMovie(randomMovieDto);
-    }
-
-    @Test
     public void addRandomMovieFromTopRatedToWatchlistAndVerifySuccessfulResponse() {
         accountSteps
-                .addMovieToWatchlist(randomMovieDto)
+                .addMovieToWatchlist(randomMovieDto.getId())
                 .assertThat()
                 .addMovieResponseIsSuccessful();
     }
 
+    @Test
+    public void addRandomMovieFromTopRatedToWatchlistAndVerifyPresence() {
+        accountSteps
+                .addMovieToWatchlist(randomMovieDto.getId())
+                .getWatchListMovies()
+                .assertThat()
+                .watchListContainsExpectedMovie(randomMovieDto);
+    }
+
     @AfterMethod
     public void tearDown() {
-        accountSteps.removeMovieFromWatchlist(randomMovieDto);
+        accountSteps.removeMovieFromWatchlist(randomMovieDto.getId());
     }
 }

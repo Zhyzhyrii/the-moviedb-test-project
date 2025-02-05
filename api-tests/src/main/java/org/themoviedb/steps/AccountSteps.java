@@ -2,8 +2,11 @@ package org.themoviedb.steps;
 
 import org.themoviedb.assertions.AccountAsserts;
 import org.themoviedb.facades.AccountControllerFacade;
+import org.themoviedb.models.MediaToWatchListDto;
 import org.themoviedb.models.MovieDto;
 import org.themoviedb.models.PostResponseDto;
+
+import java.util.List;
 
 public class AccountSteps {
 
@@ -12,25 +15,30 @@ public class AccountSteps {
 
     //TODO to WrapperResponse
     private PostResponseDto postResponseDto;
-    private MovieDto actualMovie;
+    private List<MovieDto> watchListMovies;
 
-    public AccountSteps addMovieToWatchlist(final MovieDto movieDto) {
-        postResponseDto = accountControllerFacade.addMovieToWatchlist(movieDto);
+    public AccountSteps addMovieToWatchlist(final MediaToWatchListDto body, final int statusCode) {
+        postResponseDto = accountControllerFacade.addMovieToWatchlist(body, statusCode);
         return this;
     }
 
-    public void removeMovieFromWatchlist(final MovieDto movieDto) {
-        postResponseDto = accountControllerFacade.removeMovieFromWatchlist(movieDto);
+    public AccountSteps addMovieToWatchlist(final Long movieDtoId) {
+        postResponseDto = accountControllerFacade.addMovieToWatchlist(movieDtoId);
+        return this;
     }
 
-    public AccountSteps getFirstWatchlistMovie() {
-        actualMovie = accountControllerFacade.getFirstWatchlistMovie();
+    public void removeMovieFromWatchlist(final Long movieDtoId) {
+        postResponseDto = accountControllerFacade.removeMovieFromWatchlist(movieDtoId);
+    }
+
+    public AccountSteps getWatchListMovies() {
+        watchListMovies = accountControllerFacade.getWatchListMovies();
         return this;
     }
 
     public AccountAsserts assertThat() {
         accountAsserts.setPostResponseDto(postResponseDto);
-        accountAsserts.setMovieDto(actualMovie);
+        accountAsserts.setWatchListMovies(watchListMovies);
         return accountAsserts;
     }
 }
