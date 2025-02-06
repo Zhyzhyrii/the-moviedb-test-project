@@ -7,8 +7,10 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import lombok.AccessLevel;
 import lombok.Getter;
+import org.springframework.stereotype.Component;
 
 @Getter(AccessLevel.PROTECTED)
+@Component
 public class BaseController {
 
     private final RequestSpecification baseClient = initBaseClient();

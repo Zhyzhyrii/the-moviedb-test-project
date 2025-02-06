@@ -3,6 +3,7 @@ package org.themoviedb.assertions;
 import io.restassured.response.Response;
 import lombok.Setter;
 import org.assertj.core.api.Assertions;
+import org.springframework.stereotype.Component;
 import org.themoviedb.models.MovieDto;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import static org.themoviedb.data.BodyPaths.STATUS_MESSAGE;
 import static org.themoviedb.data.BodyPaths.SUCCESS;
 
 @Setter
+@Component
 public class AccountAsserts {
 
     private Response response;

@@ -1,15 +1,22 @@
 package org.themoviedb.watchlist;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import org.themoviedb.Application;
 import org.themoviedb.models.MediaToWatchListDto;
 import org.themoviedb.steps.AccountSteps;
 
 import static org.themoviedb.data.enums.MediaType.MOVIE;
 
-public class AddMovieWatchListNegativeTests {
+//TODO make base test and move all this staff there. Other tests should extend base test
+@SpringBootTest(classes = Application.class)
+public class AddMovieWatchListNegativeTests extends AbstractTestNGSpringContextTests {
 
-    private final AccountSteps accountSteps = new AccountSteps();
+    @Autowired
+    private AccountSteps accountSteps;
 
     @Test(dataProvider = "passWrongRequestToAddToWatchlistAndVerifyUnsuccessfulResponse")
     public void passWrongRequestToAddToWatchlistAndVerifyUnsuccessfulResponse(final MediaToWatchListDto body,

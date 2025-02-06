@@ -1,9 +1,11 @@
 package org.themoviedb.controllers;
 
 import io.restassured.response.Response;
+import org.springframework.stereotype.Component;
 import org.themoviedb.models.MediaToWatchListDto;
 import org.themoviedb.models.MovieListDto;
 
+@Component
 public class AccountController extends BaseController {
 
     //    TODO account id should be provided by the user
