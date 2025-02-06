@@ -8,7 +8,7 @@ public class AccountController extends BaseController {
 
     //    TODO account id should be provided by the user
     public MovieListDto getWatchlistMovies() {
-        return baseClient()
+        return getBaseClient()
                 .pathParam("accountId", 8_564_434)
                 .get("/account/{accountId}/watchlist/movies")
                 .then()
@@ -20,7 +20,7 @@ public class AccountController extends BaseController {
     //    TODO account id should be provided by the user
     public Response updateWatchlist(final MediaToWatchListDto body,
                                     final int statusCode) {
-        return baseClient()
+        return getBaseClient()
                 .pathParam("accountId", 8_564_434)
                 .body(body)
                 .post("/account/{accountId}/watchlist")

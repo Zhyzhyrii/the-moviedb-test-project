@@ -5,7 +5,7 @@ import org.themoviedb.models.MovieListDto;
 public class MovieListsController extends BaseController {
 
     public MovieListDto getTopRatedMovies() {
-        return baseClient()
+        return getBaseClient()
                 .get("/movie/top_rated")
                 .then()
                 .statusCode(200)
