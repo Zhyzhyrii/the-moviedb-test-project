@@ -1,8 +1,8 @@
 package org.themoviedb.controllers;
 
+import io.restassured.response.Response;
 import org.themoviedb.models.MediaToWatchListDto;
 import org.themoviedb.models.MovieListDto;
-import org.themoviedb.models.PostResponseDto;
 
 public class AccountController extends BaseController {
 
@@ -18,8 +18,8 @@ public class AccountController extends BaseController {
     }
 
     //    TODO account id should be provided by the user
-    public PostResponseDto updateWatchlist(final MediaToWatchListDto body,
-                                           final int statusCode) {
+    public Response updateWatchlist(final MediaToWatchListDto body,
+                                    final int statusCode) {
         return baseClient()
                 .pathParam("accountId", 8_564_434)
                 .body(body)
@@ -27,6 +27,6 @@ public class AccountController extends BaseController {
                 .then()
                 .statusCode(statusCode)
                 .extract()
-                .as(PostResponseDto.class);
+                .response();
     }
 }

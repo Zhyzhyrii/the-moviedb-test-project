@@ -1,10 +1,10 @@
 package org.themoviedb.steps;
 
+import io.restassured.response.Response;
 import org.themoviedb.assertions.AccountAsserts;
 import org.themoviedb.facades.AccountControllerFacade;
 import org.themoviedb.models.MediaToWatchListDto;
 import org.themoviedb.models.MovieDto;
-import org.themoviedb.models.PostResponseDto;
 
 import java.util.List;
 
@@ -13,22 +13,21 @@ public class AccountSteps {
     private final AccountControllerFacade accountControllerFacade = new AccountControllerFacade();
     private final AccountAsserts accountAsserts = new AccountAsserts();
 
-    //TODO to WrapperResponse
-    private PostResponseDto postResponseDto;
+    private Response responseDto;
     private List<MovieDto> watchListMovies;
 
     public AccountSteps addMovieToWatchlist(final MediaToWatchListDto body, final int statusCode) {
-        postResponseDto = accountControllerFacade.addMovieToWatchlist(body, statusCode);
+        responseDto = accountControllerFacade.addMovieToWatchlist(body, statusCode);
         return this;
     }
 
     public AccountSteps addMovieToWatchlist(final Long movieDtoId) {
-        postResponseDto = accountControllerFacade.addMovieToWatchlist(movieDtoId);
+        responseDto = accountControllerFacade.addMovieToWatchlist(movieDtoId);
         return this;
     }
 
     public void removeMovieFromWatchlist(final Long movieDtoId) {
-        postResponseDto = accountControllerFacade.removeMovieFromWatchlist(movieDtoId);
+        responseDto = accountControllerFacade.removeMovieFromWatchlist(movieDtoId);
     }
 
     public AccountSteps getWatchListMovies() {
@@ -37,7 +36,7 @@ public class AccountSteps {
     }
 
     public AccountAsserts assertThat() {
-        accountAsserts.setPostResponseDto(postResponseDto);
+        accountAsserts.setResponse(responseDto);
         accountAsserts.setWatchListMovies(watchListMovies);
         return accountAsserts;
     }
