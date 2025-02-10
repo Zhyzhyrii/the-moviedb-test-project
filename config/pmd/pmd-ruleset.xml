@@ -56,7 +56,6 @@
 
     <rule ref="category/java/design.xml/UseUtilityClass">
         <properties>
-            <!-- Если в классе есть аннотация @SpringBootApplication, правило подавляется -->
             <property name="violationSuppressXPath"
                       value=".//Annotation[@SimpleName='SpringBootApplication']"/>
         </properties>
