@@ -45,11 +45,20 @@
     <rule ref="category/java/design.xml">
         <exclude name="LoosePackageCoupling"/>
         <exclude name="LawOfDemeter"/>
+        <exclude name="UseUtilityClass"/>
     </rule>
 
     <rule ref="category/java/design.xml/LawOfDemeter">
         <properties>
             <property name="trustRadius" value="3"/>
+        </properties>
+    </rule>
+
+    <rule ref="category/java/design.xml/UseUtilityClass">
+        <properties>
+            <!-- Если в классе есть аннотация @SpringBootApplication, правило подавляется -->
+            <property name="violationSuppressXPath"
+                      value=".//Annotation[@SimpleName='SpringBootApplication']"/>
         </properties>
     </rule>
 
