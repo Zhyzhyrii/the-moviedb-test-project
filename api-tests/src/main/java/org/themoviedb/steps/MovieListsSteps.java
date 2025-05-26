@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 import org.themoviedb.facades.MovieListsControllerFacade;
 import org.themoviedb.models.MovieDto;
 
+import java.util.List;
+
 @Component
 public class MovieListsSteps {
 
@@ -17,5 +19,9 @@ public class MovieListsSteps {
 
     public MovieDto getRandomTopRatedMovie() {
         return movieListsControllerFacade.getRandomTopRatedMovie();
+    }
+
+    public MovieDto getRandomTopRatedMovie(final List<MovieDto> exceptMovies) {
+        return movieListsControllerFacade.getRandomTopRatedMovie(exceptMovies);
     }
 }

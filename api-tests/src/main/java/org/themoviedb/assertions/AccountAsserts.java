@@ -34,10 +34,10 @@ public class AccountAsserts {
                 .body(STATUS_MESSAGE, is(statusMessage));
     }
 
-    public void watchListContainsExpectedMovie(final MovieDto expectedMovie) {
+    public void watchListContainsExpectedMovies(final List<MovieDto> expectedMovieDtoList) {
         Assertions.assertThat(watchListMovies)
-                .overridingErrorMessage("Expected the watchlist to contain the movie %s, but it was not found.", expectedMovie)
-                .contains(expectedMovie);
+                .overridingErrorMessage("Expected the watchlist to contain the movies %s, but it contains %s", expectedMovieDtoList, watchListMovies)
+                .containsExactlyElementsOf(expectedMovieDtoList);
     }
 
     public void watchListIsEmpty() {

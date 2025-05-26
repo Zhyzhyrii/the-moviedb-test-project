@@ -9,6 +9,8 @@ import org.themoviedb.models.MovieDto;
 import org.themoviedb.steps.AccountSteps;
 import org.themoviedb.steps.MovieListsSteps;
 
+import java.util.List;
+
 public class AddMovieWatchListHappyPathTests extends BaseTest {
 
     @Autowired
@@ -38,7 +40,7 @@ public class AddMovieWatchListHappyPathTests extends BaseTest {
                 .addMovieToWatchlist(randomMovieDto.getId())
                 .getWatchListMovies()
                 .assertThat()
-                .watchListContainsExpectedMovie(randomMovieDto);
+                .watchListContainsExpectedMovies(List.of(randomMovieDto));
     }
 
     @AfterMethod
