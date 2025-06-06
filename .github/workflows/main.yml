@@ -46,5 +46,8 @@ jobs:
           name: report
           path: api-tests/build/reports/tests/test
 
-      - name: Publish Test Summary Results
-        run: npx github-actions-ctrf ctrf/ctrf-report.json
+      - name: Publish Test Report
+        uses: ctrf-io/github-test-reporter@v1
+        with:
+          report-path: './ctrf/*.json'
+        if: always()
