@@ -31,11 +31,6 @@ jobs:
             distribution: 'corretto'
             cache: gradle
 
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-        with:
-            node-version: '20.x'
-
       - name: Run API tests
         run: ./gradlew clean test
       
@@ -45,9 +40,3 @@ jobs:
         with:
           name: report
           path: api-tests/build/reports/tests/test
-
-      - name: Publish Test Report
-        uses: ctrf-io/github-test-reporter@v1
-        with:
-          report-path: './ctrf/*.json'
-        if: always()
