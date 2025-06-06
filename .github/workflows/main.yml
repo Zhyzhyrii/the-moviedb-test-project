@@ -39,4 +39,4 @@ jobs:
         if: always()
         with:
           name: report
-          path: build/reports/tests/test/index.html
+          path: api-tests/build/reports/tests/test/index.html
