@@ -43,6 +43,14 @@ public class AddMovieWatchListHappyPathTests extends BaseTest {
                 .watchListContainsExpectedMovies(List.of(randomMovieDto));
     }
 
+    @Test
+    public void addTest(){//todo remove
+        accountSteps
+                .addMovieToWatchlist(randomMovieDto.getId())
+                .assertThat()
+                .addMovieResponseIsSuccessful();
+    }
+
     @AfterMethod
     public void tearDown() {
         accountSteps.removeMovieFromWatchlist(randomMovieDto.getId());
