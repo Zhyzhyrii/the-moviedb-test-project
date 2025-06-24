@@ -30,7 +30,7 @@ jobs:
             cache: gradle
 
       - name: Run API tests
-        run: ./gradlew clean test
+        run: ./gradlew api-tests:clean:test
 
       - name: Load test report history
         uses: actions/checkout@v3
@@ -46,7 +46,7 @@ jobs:
         with:
                 gh_pages: gh-pages
                 allure_history: allure-history
-                allure_results: build/allure-results
+                allure_results: api-tests/build/allure-results
 
       - name: Publish test report
         uses: peaceiris/actions-gh-pages@v3
