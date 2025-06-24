@@ -30,8 +30,8 @@ jobs:
             cache: gradle
 
       - name: Run API tests
-        working-directory: api-tests
         run: ./gradlew clean test
+        working-directory: api-tests
 
       - name: Load test report history
         uses: actions/checkout@v3
