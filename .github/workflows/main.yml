@@ -30,7 +30,8 @@ jobs:
             cache: gradle
 
       - name: Run API tests
-        run: ./gradlew api-tests:clean:test
+        working-directory: api-tests
+        run: ./gradlew clean test
 
       - name: Load test report history
         uses: actions/checkout@v3
@@ -44,10 +45,9 @@ jobs:
         uses: simple-elf/allure-report-action@v1.7
         if: always()
         with:
-                gh_pages: gh-pages
-                allure_history: allure-history
-                allure_results: build/allure-results
-                working-directory: api-tests
+          gh_pages: ../gh-pages
+          allure_history: ../allure-history
+          allure_results: build/allure-results
 
       - name: Publish test report
         uses: peaceiris/actions-gh-pages@v3
