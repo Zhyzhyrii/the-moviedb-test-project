@@ -18,4 +18,7 @@ dependencies {
     annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.36'
     testImplementation group: 'org.testng', name: 'testng', version: '7.10.2'
     implementation group: 'org.assertj', name: 'assertj-core', version: '3.27.3'
+    implementation 'io.qameta.allure:allure-testng:2.29.1'
+    implementation 'io.qameta.allure:allure-java-commons:2.29.1'
+    implementation 'io.qameta.allure:allure-rest-assured:2.29.1'
 }

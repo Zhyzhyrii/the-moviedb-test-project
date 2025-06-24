@@ -1,5 +1,6 @@
 package org.themoviedb.steps;
 
+import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,20 +26,24 @@ public class AccountSteps {
         this.accountAsserts = accountAsserts;
     }
 
+    @Step("Add movie '{body}' to watch list")
     public AccountSteps addMovieToWatchlist(final MediaToWatchListDto body, final int statusCode) {
         responseDto = accountControllerFacade.addMovieToWatchlist(body, statusCode);
         return this;
     }
 
+    @Step("Add movie '{movieDtoId}' to watch list")
     public AccountSteps addMovieToWatchlist(final Long movieDtoId) {
         responseDto = accountControllerFacade.addMovieToWatchlist(movieDtoId);
         return this;
     }
 
+    @Step("Remove movie '{movieDtoId}' from watch list")
     public void removeMovieFromWatchlist(final Long movieDtoId) {
         responseDto = accountControllerFacade.removeMovieFromWatchlist(movieDtoId);
     }
 
+    @Step("Get watch list movies")
     public AccountSteps getWatchListMovies() {
         watchListMovies = accountControllerFacade.getWatchListMovies();
         return this;
