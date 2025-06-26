@@ -6,6 +6,7 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.springframework.stereotype.Component;
+import org.themoviedb.filters.CustomAllureRestAssuredFilter;
 
 @Component
 public class BaseController {
@@ -26,6 +27,6 @@ public class BaseController {
                 .baseUri("https://api.themoviedb.org/3")
                 .header("Authorization", "Bearer " + authToken)
                 .contentType(ContentType.JSON)
-                .filters(new RequestLoggingFilter(), new ResponseLoggingFilter());
+                .filters(new RequestLoggingFilter(), new ResponseLoggingFilter(), new CustomAllureRestAssuredFilter());
     }
 }
