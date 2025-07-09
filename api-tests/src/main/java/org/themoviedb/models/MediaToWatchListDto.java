@@ -4,16 +4,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.ToString;
 
-@Builder
 @ToString
-public class MediaToWatchListDto {
+public class MediaToWatchListDto extends MediaToListDto {
 
     @JsonProperty("media_type")
     private final String mediaType;
 
-    @JsonProperty("media_id")
-    private final Long mediaId;
-
     @JsonProperty("watchlist")
-    private final Boolean watchlist;
+    private final Boolean watchList;
+
+    @Builder(builderMethodName = "mediaToWatchListDtoBuilder")
+    public MediaToWatchListDto(final Long mediaId,
+                               final String mediaType,
+                               final Boolean watchList) {
+        super(mediaId);
+        this.mediaType = mediaType;
+        this.watchList = watchList;
+    }
 }

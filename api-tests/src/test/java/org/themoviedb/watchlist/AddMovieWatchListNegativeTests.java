@@ -37,18 +37,18 @@ public class AddMovieWatchListNegativeTests extends BaseTest {
     public Object[][] passWrongRequestToAddToWatchlistAndVerifyUnsuccessfulResponse() {
         return new Object[][]{
                 {
-                        MediaToWatchListDto.builder()
+                        MediaToWatchListDto.mediaToWatchListDtoBuilder()
                                 .mediaType(MOVIE.getName())
-                                .watchlist(true)
+                                .watchList(true)
                                 .build(),
                         6,
                         "Invalid id: The pre-requisite id is invalid or not found."
                 },
                 {
-                        MediaToWatchListDto.builder()
+                        MediaToWatchListDto.mediaToWatchListDtoBuilder()
                                 .mediaType("audio")
                                 .mediaId(2L)
-                                .watchlist(true)
+                                .watchList(true)
                                 .build(),
                         34,
                         "The resource you requested could not be found."
@@ -60,16 +60,16 @@ public class AddMovieWatchListNegativeTests extends BaseTest {
     public Object[][] passWrongRequestToAddToWatchlistAndVerifyWatchListIsNotUpdated() {
         return new Object[][]{
                 {
-                        MediaToWatchListDto.builder()
+                        MediaToWatchListDto.mediaToWatchListDtoBuilder()
                                 .mediaType(MOVIE.getName())
-                                .watchlist(true)
+                                .watchList(true)
                                 .build()
                 },
                 {
-                        MediaToWatchListDto.builder()
+                        MediaToWatchListDto.mediaToWatchListDtoBuilder()
                                 .mediaType("audio")
                                 .mediaId(2L)
-                                .watchlist(true)
+                                .watchList(true)
                                 .build()
                 }
         };
