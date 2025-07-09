@@ -15,11 +15,11 @@ public class UpdateWatchListRequestTemplate {
     }
 
     private MediaToWatchListDto createMovieToWatchListRequest(final Long mediaId,
-                                                              final Boolean watchlist) {
-        return MediaToWatchListDto.builder()
+                                                              final Boolean watchList) {
+        return MediaToWatchListDto.mediaToWatchListDtoBuilder()
                 .mediaType(MOVIE.getName())
                 .mediaId(mediaId)
-                .watchlist(watchlist)
+                .watchList(watchList)
                 .build();
     }
 }

@@ -9,8 +9,8 @@ public class CreateListRequestTemplate {
 
     public ListDto createListRequest() {
         return ListDto.builder()
-                .name(String.format("Created list: %s", getRandomizedAlphaNumericValue(5)))
-                .description(String.format("Description: %s", getRandomizedAlphaNumericValue(8)))
+                .name(String.format("Created new list: %s", getRandomizedAlphaNumericValue(1)))
+                .description(String.format("Description: %s", getRandomizedAlphaNumericValue(1)))
                 .language(ENGLISH.getValue())
                 .build();
     }
