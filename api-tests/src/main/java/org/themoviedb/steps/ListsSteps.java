@@ -58,6 +58,11 @@ public class ListsSteps {
         return this;
     }
 
+    @Step("Remove list")
+    public void removeList() {
+        removeList(listId);
+    }
+
     @Step("Remove list '{listId}'")
     public void removeList(final long listId) {
         listsController.deleteList(listId, 200);

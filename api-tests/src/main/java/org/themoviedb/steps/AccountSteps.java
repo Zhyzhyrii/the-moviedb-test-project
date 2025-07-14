@@ -8,6 +8,7 @@ import org.themoviedb.assertions.AccountAsserts;
 import org.themoviedb.facades.AccountControllerFacade;
 import org.themoviedb.models.MediaToWatchListDto;
 import org.themoviedb.models.MovieDto;
+import org.themoviedb.models.listdetails.ListDetailsDto;
 
 import java.util.List;
 
@@ -19,9 +20,11 @@ public class AccountSteps {
 
     private Response responseDto;
     private List<MovieDto> watchListMovies;
+    private List<ListDetailsDto> userLists;
 
     @Autowired
-    public AccountSteps(final AccountControllerFacade accountControllerFacade, final AccountAsserts accountAsserts) {
+    public AccountSteps(final AccountControllerFacade accountControllerFacade,
+                        final AccountAsserts accountAsserts) {
         this.accountControllerFacade = accountControllerFacade;
         this.accountAsserts = accountAsserts;
     }
@@ -49,9 +52,16 @@ public class AccountSteps {
         return this;
     }
 
+    @Step("Get user lists")
+    public AccountSteps getUserLists() {
+        userLists = accountControllerFacade.getUsersLists();
+        return this;
+    }
+
     public AccountAsserts assertThat() {
         accountAsserts.setResponse(responseDto);
         accountAsserts.setWatchListMovies(watchListMovies);
+        accountAsserts.setUserLists(userLists);
         return accountAsserts;
     }
 }

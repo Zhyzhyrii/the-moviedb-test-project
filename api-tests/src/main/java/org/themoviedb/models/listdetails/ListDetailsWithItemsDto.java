@@ -4,15 +4,14 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Getter
-@EqualsAndHashCode
 @AllArgsConstructor
-@NoArgsConstructor(force = true)
+@EqualsAndHashCode(callSuper = true)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ListDetailsDto {
-    private final long id;
-    private final String name;
-    private final String description;
+public class ListDetailsWithItemsDto extends ListDetailsDto {
+    private final List<ItemDto> items;
 }
+

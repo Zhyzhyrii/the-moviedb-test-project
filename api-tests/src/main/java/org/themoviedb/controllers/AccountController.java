@@ -1,9 +1,12 @@
 package org.themoviedb.controllers;
 
+import io.restassured.common.mapper.TypeRef;
 import io.restassured.response.Response;
 import org.springframework.stereotype.Component;
 import org.themoviedb.models.MediaToWatchListDto;
-import org.themoviedb.models.MovieListDto;
+import org.themoviedb.models.MovieDto;
+import org.themoviedb.models.listdetails.ListDetailsDto;
+import org.themoviedb.models.wrappers.PaginatedResponse;
 
 import static org.themoviedb.PathQueryParameters.ACCOUNT_ID;
 
@@ -11,14 +14,25 @@ import static org.themoviedb.PathQueryParameters.ACCOUNT_ID;
 public class AccountController extends BaseController {
 
     //    TODO account id should be provided by the user
-    public MovieListDto getWatchlistMovies() {
+    public PaginatedResponse<MovieDto> getWatchlistMovies() {
         return getRequestSpecification()
                 .pathParam(ACCOUNT_ID, 8_564_434)
                 .get("/account/{accountId}/watchlist/movies")
                 .then()
                 .statusCode(200)
                 .extract()
-                .as(MovieListDto.class);
+                .as(new TypeRef<>() {});
+    }
+
+    //    TODO account id should be provided by the user
+    public PaginatedResponse<ListDetailsDto> getUserLists() {
+        return getRequestSpecification()
+                .pathParam(ACCOUNT_ID, 8_564_434)
+                .get("/account/{accountId}/lists")
+                .then()
+                .statusCode(200)
+                .extract()
+                .as(new TypeRef<>() {});
     }
 
     //    TODO account id should be provided by the user

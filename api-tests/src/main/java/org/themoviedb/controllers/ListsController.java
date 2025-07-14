@@ -4,7 +4,7 @@ import io.restassured.response.Response;
 import org.springframework.stereotype.Component;
 import org.themoviedb.models.ListDto;
 import org.themoviedb.models.MediaToListDto;
-import org.themoviedb.models.listdetails.ListDetailsDto;
+import org.themoviedb.models.listdetails.ListDetailsWithItemsDto;
 
 import static org.themoviedb.PathQueryParameters.LIST_ID;
 
@@ -22,9 +22,9 @@ public class ListsController extends BaseController {
                 .response();
     }
 
-    public Response deleteList(final long listId,
-                               final int statusCode) {
-        return getRequestSpecification()
+    public void deleteList(final long listId,
+                           final int statusCode) {
+        getRequestSpecification()
                 .pathParam(LIST_ID, listId)
                 .delete("/list/{list_id}")
                 .then()
@@ -59,13 +59,13 @@ public class ListsController extends BaseController {
                 .response();
     }
 
-    public ListDetailsDto getListDetails(final long listId) {
+    public ListDetailsWithItemsDto getListDetails(final long listId) {
         return getRequestSpecification()
                 .pathParam(LIST_ID, listId)
                 .get("/list/{list_id}")
                 .then()
                 .statusCode(200)
                 .extract()
-                .as(ListDetailsDto.class);
+                .as(ListDetailsWithItemsDto.class);
     }
 }
