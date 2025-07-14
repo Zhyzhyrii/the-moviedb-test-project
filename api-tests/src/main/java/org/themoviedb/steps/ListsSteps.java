@@ -46,10 +46,21 @@ public class ListsSteps {
         return this;
     }
 
+    @Step("Remove movie from list")
+    public ListsSteps removeMovieFromList(final Long movieDtoId) {
+        responseDto = listsControllerFacade.removeMovieFromList(movieDtoId, listId);
+        return this;
+    }
+
     @Step("Get movies of the list")
     public ListsSteps getListMovies() {
         listMovies = listsControllerFacade.getListMovies(listId);
         return this;
+    }
+
+    @Step("Remove list")
+    public void removeList() {
+        removeList(listId);
     }
 
     @Step("Remove list '{listId}'")

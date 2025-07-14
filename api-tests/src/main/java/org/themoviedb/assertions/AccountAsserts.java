@@ -6,8 +6,10 @@ import lombok.Setter;
 import org.assertj.core.api.Assertions;
 import org.springframework.stereotype.Component;
 import org.themoviedb.models.MovieDto;
+import org.themoviedb.models.listdetails.ListDetailsDto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.Matchers.is;
 import static org.themoviedb.data.BodyPaths.STATUS_CODE;
@@ -20,6 +22,7 @@ public class AccountAsserts {
 
     private Response response;
     private List<MovieDto> watchListMovies;
+    private List<ListDetailsDto> userLists;
 
     @Step("'Add movie' response should have successful status")
     public void addMovieResponseIsSuccessful() {
@@ -49,5 +52,13 @@ public class AccountAsserts {
         Assertions.assertThat(watchListMovies)
                 .overridingErrorMessage("Watchlist is not empty")
                 .isEmpty();
+    }
+
+    @Step("Users custom lists do not contain list '{listId}'")
+    public void usersCustomListsDoNotContainSpecificList(final long listId) {
+        var usersCustomListIds = userLists.stream().map(ListDetailsDto::getId).collect(Collectors.toList());
+        Assertions.assertThat(usersCustomListIds)
+                .as("Expected the users custom lists not to contain the list '%d', but it contains '%s'", listId, usersCustomListIds)
+                .doesNotContain(listId);
     }
 }

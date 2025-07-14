@@ -1,17 +1,19 @@
 package org.themoviedb.controllers;
 
+import io.restassured.common.mapper.TypeRef;
 import org.springframework.stereotype.Component;
-import org.themoviedb.models.MovieListDto;
+import org.themoviedb.models.MovieDto;
+import org.themoviedb.models.wrappers.PaginatedResponse;
 
 @Component
 public class MovieListsController extends BaseController {
 
-    public MovieListDto getTopRatedMovies() {
+    public PaginatedResponse<MovieDto> getTopRatedMovies() {
         return getRequestSpecification()
                 .get("/movie/top_rated")
                 .then()
                 .statusCode(200)
                 .extract()
-                .as(MovieListDto.class);
+                .as(new TypeRef<>() {});
     }
 }

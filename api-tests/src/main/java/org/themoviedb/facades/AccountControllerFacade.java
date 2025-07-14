@@ -7,6 +7,7 @@ import org.themoviedb.controllers.AccountController;
 import org.themoviedb.data.requests.UpdateWatchListRequestTemplate;
 import org.themoviedb.models.MediaToWatchListDto;
 import org.themoviedb.models.MovieDto;
+import org.themoviedb.models.listdetails.ListDetailsDto;
 
 import java.util.List;
 
@@ -38,6 +39,12 @@ public class AccountControllerFacade {
     public List<MovieDto> getWatchListMovies() {
         return accountController
                 .getWatchlistMovies()
+                .getResults();
+    }
+
+    public List<ListDetailsDto> getUsersLists() {
+        return accountController
+                .getUserLists()
                 .getResults();
     }
 }

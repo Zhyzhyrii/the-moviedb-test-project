@@ -44,6 +44,18 @@ public class CreateListHappyPathTests extends BaseTest {
                 .listContainsExpectedMovies(List.of(randomMovieDto));
     }
 
+    @Test
+    public void createListAddRandomMovieFromTopRatedToCreatedListRemoveMovieFromListAndVerifyListIsEmpty() {
+        var movieId = randomMovieDto.getId();
+        listsSteps
+                .createList()
+                .addMovieToList(movieId)
+                .removeMovieFromList(movieId)
+                .getListMovies()
+                .assertThat()
+                .listIsEmpty();
+    }
+
     @AfterMethod
     public void tearDown() {
         listsSteps.removeList(listsSteps.getListId());

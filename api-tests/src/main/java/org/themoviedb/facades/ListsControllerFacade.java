@@ -35,6 +35,14 @@ public class ListsControllerFacade {
         return listsController.addMovieToList(body, listId, 201);
     }
 
+    @Step("Remove movie '{movieDtoId}' from list '{listId}'")
+    public Response removeMovieFromList(final Long movieDtoId, final long listId) {
+        var body = MediaToListDto.builder()
+                .mediaId(movieDtoId)
+                .build();
+        return listsController.removeMovieFromList(body, listId, 200);
+    }
+
     @Step("Get movies of the list '{listId}'")
     public List<ItemDto> getListMovies(final long listId) {
         return listsController

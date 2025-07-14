@@ -28,7 +28,7 @@ public class ListsAsserts {
     private Response response;
     private List<ItemDto> listMovies;
 
-    @Step("'Create lists' response should have successful status")
+    @Step("'Create list' response should have successful status")
     public void createListResponseIsSuccessful() {
         response.then()
                 .body(SUCCESS, is(true))
@@ -41,12 +41,24 @@ public class ListsAsserts {
         listContainsExpectedMovies(listId, movieDtoList);
     }
 
+    @Step("List should be empty")
+    public void listIsEmpty() {
+        listIsEmpty(listId);
+    }
+
     @Step("List '{listId}' should contain '{movieDtoList}' movies")
     private void listContainsExpectedMovies(final long listId,
-                                           final List<MovieDto> movieDtoList) {
+                                            final List<MovieDto> movieDtoList) {
         var expectedListMovies = itemDtoMapper.movieDtoListToItemDtoList(movieDtoList);
         Assertions.assertThat(listMovies)
-                .overridingErrorMessage("Expected the list %s to contain the movies %s, but it contains %s", listId, movieDtoList, listMovies)
+                .as("Expected the list '%d' to contain the movies '%s', but it contains '%s'", listId, movieDtoList, listMovies)
                 .containsExactlyElementsOf(expectedListMovies);
+    }
+
+    @Step("List '{listId}' should be empty")
+    private void listIsEmpty(final long listId) {
+        Assertions.assertThat(listMovies)
+                .as("Expected the list '%d' is empty, but it contains '%s'", listId, listMovies)
+                .isEmpty();
     }
 }
