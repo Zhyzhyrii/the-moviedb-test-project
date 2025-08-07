@@ -3,7 +3,7 @@ package org.themoviedb.facades;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.themoviedb.controllers.MovieListsController;
-import org.themoviedb.models.MovieDto;
+import org.themoviedb.models.movie.MovieDto;
 import org.themoviedb.utils.RandomUtil;
 
 import java.util.List;

@@ -5,7 +5,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.themoviedb.BaseTest;
-import org.themoviedb.models.MovieDto;
+import org.themoviedb.models.movie.MovieDto;
 import org.themoviedb.steps.AccountSteps;
 import org.themoviedb.steps.MovieListsSteps;
 

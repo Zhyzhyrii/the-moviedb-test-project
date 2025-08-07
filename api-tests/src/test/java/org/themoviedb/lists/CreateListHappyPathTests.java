@@ -1,11 +1,11 @@
-package org.themoviedb.list;
+package org.themoviedb.lists;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.themoviedb.BaseTest;
-import org.themoviedb.models.MovieDto;
+import org.themoviedb.models.movie.MovieDto;
 import org.themoviedb.steps.ListsSteps;
 import org.themoviedb.steps.MovieListsSteps;
 

@@ -21,4 +21,5 @@ dependencies {
     implementation 'io.qameta.allure:allure-testng:2.29.1'
     implementation 'io.qameta.allure:allure-java-commons:2.29.1'
     implementation 'io.qameta.allure:allure-rest-assured:2.29.1'
+    implementation group: 'org.awaitility', name: 'awaitility', version: '4.3.0'
 }

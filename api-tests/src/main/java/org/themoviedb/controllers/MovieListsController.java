@@ -2,7 +2,7 @@ package org.themoviedb.controllers;
 
 import io.restassured.common.mapper.TypeRef;
 import org.springframework.stereotype.Component;
-import org.themoviedb.models.MovieDto;
+import org.themoviedb.models.movie.MovieDto;
 import org.themoviedb.models.wrappers.PaginatedResponse;
 
 @Component

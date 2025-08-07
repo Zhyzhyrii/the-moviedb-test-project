@@ -4,7 +4,7 @@ import io.qameta.allure.Step;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.themoviedb.facades.MovieListsControllerFacade;
-import org.themoviedb.models.MovieDto;
+import org.themoviedb.models.movie.MovieDto;
 
 import java.util.List;
 

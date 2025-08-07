@@ -1,7 +1,7 @@
 package org.themoviedb.mappers;
 
 import org.springframework.stereotype.Component;
-import org.themoviedb.models.MovieDto;
+import org.themoviedb.models.movie.MovieDto;
 import org.themoviedb.models.listdetails.ItemDto;
 
 import java.util.List;
