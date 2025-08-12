@@ -33,7 +33,7 @@ public class RemoveRatingToMovieHappyPathTests extends BaseTest {
     }
 
     @Test
-    public void addRatingToMovieAndVerifyRatingIsAdded() {
+    public void addRatingToMovieRemoveRatingAndVerifyRatingIsRemoved() {
         var movieId = randomMovieDto.getId();
         var rating = getRandomElement(generateMovieRatingRange());
         moviesSteps
