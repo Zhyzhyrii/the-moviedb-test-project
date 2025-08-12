@@ -62,7 +62,7 @@ public class AccountAsserts {
                 .isEmpty();
     }
 
-    @Step("Users custom lists do not contain list '{listId}'")
+    @Step("Users custom lists should not contain list '{listId}'")
     public void usersCustomListsDoNotContainSpecificList(final long listId) {
         var usersCustomListIds = userLists.stream().map(ListDetailsDto::getId).collect(Collectors.toList());
         Assertions.assertThat(usersCustomListIds)
@@ -70,12 +70,20 @@ public class AccountAsserts {
                 .doesNotContain(listId);
     }
 
-    @Step("User list of rated movies should contain '{movieDto}' movie with '{}' rating")
+    @Step("Users list of rated movies should contain '{movieDto}' movie with '{}' rating")
     public void ratedMovieListContainsExpectedRatedMovie(final MovieDto movieDto,
                                                          final BigDecimal rating) {
         var expectedRatedMovies = List.of(ratedMovieDtoMapper.movieDtoToRatedMovieDto(movieDto, rating));
         Assertions.assertThat(ratedMovies)
                 .as("Expected user list of rated movies to contain the movie %s, but it contains %s", expectedRatedMovies, ratedMovies)
                 .containsExactlyElementsOf(expectedRatedMovies);
+    }
+
+    @Step("Users list of rated movies should not contain movie with id '{movieId}'")
+    public void ratedMovieListDoesNotContainMovie(final long movieId) {
+        var ratedMovieIds = ratedMovies.stream().map(RatedMovieDto::getId).toList();
+        Assertions.assertThat(ratedMovieIds)
+                .as("Expected the users list of rated movies not to contain the movie '%d', but it contains '%s'", movieId, ratedMovieIds)
+                .doesNotContain(movieId);
     }
 }

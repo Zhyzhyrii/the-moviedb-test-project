@@ -1,7 +1,6 @@
 package org.themoviedb.movies;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.themoviedb.BaseTest;
@@ -10,10 +9,12 @@ import org.themoviedb.steps.AccountSteps;
 import org.themoviedb.steps.MovieListsSteps;
 import org.themoviedb.steps.MoviesSteps;
 
+import java.util.List;
+
 import static org.themoviedb.utils.DataGeneratorUtil.generateMovieRatingRange;
 import static org.themoviedb.utils.RandomUtil.getRandomElement;
 
-public class AddRatingToMovieHappyPathTests extends BaseTest {
+public class RemoveRatingToMovieHappyPathTests extends BaseTest {
 
     @Autowired
     private MovieListsSteps movieListsSteps;
@@ -32,26 +33,18 @@ public class AddRatingToMovieHappyPathTests extends BaseTest {
     }
 
     @Test
-    public void addRatingToMovieAndVerifySuccessfulResponse() {
-        moviesSteps
-                .addMovieRating(randomMovieDto.getId(), getRandomElement(generateMovieRatingRange()))
-                .assertThat()
-                .addRatingToMovieResponseIsSuccessful();
-    }
-
-    @Test
     public void addRatingToMovieAndVerifyRatingIsAdded() {
+        var movieId = randomMovieDto.getId();
         var rating = getRandomElement(generateMovieRatingRange());
         moviesSteps
-                .addMovieRating(randomMovieDto.getId(), rating);
+                .addMovieRating(movieId, rating);
         accountSteps
-                .waitAndGetRatedMovies(movies -> !movies.isEmpty())
+                .waitAndGetRatedMovies(movies -> !movies.isEmpty());
+        moviesSteps
+                .removeMovieRating(movieId);
+        accountSteps
+                .waitAndGetRatedMovies(List::isEmpty)
                 .assertThat()
-                .ratedMovieListContainsExpectedRatedMovie(randomMovieDto, rating);
-    }
-
-    @AfterMethod
-    public void tearDown() {
-        moviesSteps.removeMovieRating(randomMovieDto.getId());
+                .ratedMovieListDoesNotContainMovie(movieId);
     }
 }

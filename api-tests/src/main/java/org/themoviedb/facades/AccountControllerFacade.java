@@ -12,6 +12,7 @@ import org.themoviedb.models.movie.RatedMovieDto;
 import org.themoviedb.utils.WaitUtil;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 @Component
 public class AccountControllerFacade {
@@ -50,10 +51,10 @@ public class AccountControllerFacade {
                 .getResults();
     }
 
-    public List<RatedMovieDto> waitAndGetRatedMovies() {
+    public List<RatedMovieDto> waitAndGetRatedMovies(final Predicate<List<RatedMovieDto>> predicate) {
         return WaitUtil.waitUntil(
                 this::getRatedMovies,
-                movies -> !movies.isEmpty(),
+                predicate,
                 10_000,
                 1000
         );

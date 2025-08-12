@@ -12,6 +12,7 @@ import org.themoviedb.models.listdetails.ListDetailsDto;
 import org.themoviedb.models.movie.RatedMovieDto;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 @Component
 public class AccountSteps {
@@ -61,8 +62,8 @@ public class AccountSteps {
     }
 
     @Step("Wait and get rated movies")
-    public AccountSteps waitAndGetRatedMovies() {
-        ratedMovies = accountControllerFacade.waitAndGetRatedMovies();
+    public AccountSteps waitAndGetRatedMovies(final Predicate<List<RatedMovieDto>> predicate) {//todo add that specific movie is added or not to List?
+        ratedMovies = accountControllerFacade.waitAndGetRatedMovies(predicate);
         return this;
     }
 
