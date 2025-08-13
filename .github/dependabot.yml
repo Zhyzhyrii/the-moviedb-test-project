@@ -5,7 +5,7 @@ updates:
     directory: "/"                    # корень репозитория
     schedule:
       interval: "daily"
-      time: "00:10"
+      time: "00:12"
       timezone: "Europe/Kyiv"
     open-pull-requests-limit: 20
     allow:
@@ -58,7 +58,7 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-      time: "00:10"
+      time: "00:12"
       timezone: "Europe/Kyiv"
     labels: ["deps", "github-actions"]
     open-pull-requests-limit: 10
