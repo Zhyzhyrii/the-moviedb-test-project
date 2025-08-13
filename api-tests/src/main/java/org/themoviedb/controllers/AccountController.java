@@ -4,8 +4,9 @@ import io.restassured.common.mapper.TypeRef;
 import io.restassured.response.Response;
 import org.springframework.stereotype.Component;
 import org.themoviedb.models.MediaToWatchListDto;
-import org.themoviedb.models.MovieDto;
+import org.themoviedb.models.movie.MovieDto;
 import org.themoviedb.models.listdetails.ListDetailsDto;
+import org.themoviedb.models.movie.RatedMovieDto;
 import org.themoviedb.models.wrappers.PaginatedResponse;
 
 import static org.themoviedb.PathQueryParameters.ACCOUNT_ID;
@@ -29,6 +30,17 @@ public class AccountController extends BaseController {
         return getRequestSpecification()
                 .pathParam(ACCOUNT_ID, 8_564_434)
                 .get("/account/{accountId}/lists")
+                .then()
+                .statusCode(200)
+                .extract()
+                .as(new TypeRef<>() {});
+    }
+
+    //    TODO account id should be provided by the user
+    public PaginatedResponse<RatedMovieDto> getRatedMovies() {
+        return getRequestSpecification()
+                .pathParam(ACCOUNT_ID, 8_564_434)
+                .get("/account/{accountId}/rated/movies")
                 .then()
                 .statusCode(200)
                 .extract()

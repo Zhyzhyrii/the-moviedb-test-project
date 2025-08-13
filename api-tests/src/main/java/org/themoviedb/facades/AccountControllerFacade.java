@@ -6,10 +6,13 @@ import org.springframework.stereotype.Component;
 import org.themoviedb.controllers.AccountController;
 import org.themoviedb.data.requests.UpdateWatchListRequestTemplate;
 import org.themoviedb.models.MediaToWatchListDto;
-import org.themoviedb.models.MovieDto;
 import org.themoviedb.models.listdetails.ListDetailsDto;
+import org.themoviedb.models.movie.MovieDto;
+import org.themoviedb.models.movie.RatedMovieDto;
+import org.themoviedb.utils.WaitUtil;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 @Component
 public class AccountControllerFacade {
@@ -45,6 +48,21 @@ public class AccountControllerFacade {
     public List<ListDetailsDto> getUsersLists() {
         return accountController
                 .getUserLists()
+                .getResults();
+    }
+
+    public List<RatedMovieDto> waitAndGetRatedMovies(final Predicate<List<RatedMovieDto>> predicate) {
+        return WaitUtil.waitUntil(
+                this::getRatedMovies,
+                predicate,
+                10_000,
+                1000
+        );
+    }
+
+    private List<RatedMovieDto> getRatedMovies() {
+        return accountController
+                .getRatedMovies()
                 .getResults();
     }
 }

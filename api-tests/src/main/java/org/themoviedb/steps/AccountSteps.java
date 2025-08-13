@@ -7,10 +7,12 @@ import org.springframework.stereotype.Component;
 import org.themoviedb.assertions.AccountAsserts;
 import org.themoviedb.facades.AccountControllerFacade;
 import org.themoviedb.models.MediaToWatchListDto;
-import org.themoviedb.models.MovieDto;
+import org.themoviedb.models.movie.MovieDto;
 import org.themoviedb.models.listdetails.ListDetailsDto;
+import org.themoviedb.models.movie.RatedMovieDto;
 
 import java.util.List;
+import java.util.function.Predicate;
 
 @Component
 public class AccountSteps {
@@ -21,6 +23,7 @@ public class AccountSteps {
     private Response responseDto;
     private List<MovieDto> watchListMovies;
     private List<ListDetailsDto> userLists;
+    private List<RatedMovieDto> ratedMovies;
 
     @Autowired
     public AccountSteps(final AccountControllerFacade accountControllerFacade,
@@ -58,10 +61,17 @@ public class AccountSteps {
         return this;
     }
 
+    @Step("Wait and get rated movies")
+    public AccountSteps waitAndGetRatedMovies(final Predicate<List<RatedMovieDto>> predicate) {//todo add that specific movie is added or not to List?
+        ratedMovies = accountControllerFacade.waitAndGetRatedMovies(predicate);
+        return this;
+    }
+
     public AccountAsserts assertThat() {
         accountAsserts.setResponse(responseDto);
         accountAsserts.setWatchListMovies(watchListMovies);
         accountAsserts.setUserLists(userLists);
+        accountAsserts.setRatedMovies(ratedMovies);
         return accountAsserts;
     }
 }

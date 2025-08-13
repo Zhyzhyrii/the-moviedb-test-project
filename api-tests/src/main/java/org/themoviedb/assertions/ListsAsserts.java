@@ -7,7 +7,7 @@ import org.assertj.core.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.themoviedb.mappers.ItemDtoMapper;
-import org.themoviedb.models.MovieDto;
+import org.themoviedb.models.movie.MovieDto;
 import org.themoviedb.models.listdetails.ItemDto;
 
 import java.util.List;
