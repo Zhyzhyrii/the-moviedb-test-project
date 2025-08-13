@@ -16,11 +16,19 @@ public class MoviesAsserts {
 
     private Response response;
 
-    @Step("'Create list' response should have successful status")
+    @Step("'Add rating to movie' response should have successful status")
     public void addRatingToMovieResponseIsSuccessful() {
         response.then()
                 .body(SUCCESS, is(true))
                 .body(STATUS_CODE, is(1))
                 .body(STATUS_MESSAGE, is("Success."));//todo to template. I have already used it
+    }
+
+    @Step("'Update movie rating' response should have successful status")
+    public void updateMovieRatingResponseIsSuccessful() {
+        response.then()
+                .body(SUCCESS, is(true))
+                .body(STATUS_CODE, is(12))
+                .body(STATUS_MESSAGE, is("The item/record was updated successfully."));
     }
 }
