@@ -1,0 +1,66 @@
+version: 2
+updates:
+  # Gradle зависимости и плагины
+  - package-ecosystem: "gradle"
+    directory: "/"                    # корень репозитория
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "08:00"
+      timezone: "Europe/Kyiv"
+    open-pull-requests-limit: 20
+    allow:
+      - dependency-type: "direct"     # не спамим транзитивными
+    labels: ["deps", "gradle"]
+    commit-message:
+      prefix: "deps"
+      include: "scope"                # deps(artifact): ...
+    # Группировка PR, чтобы меньше шума
+    groups:
+      spring:
+        patterns:
+          - "org.springframework*"
+          - "org.springdoc*"
+          - "org.springframework.boot*"
+          - "org.springframework.security*"
+      test-stack:
+        patterns:
+          - "org.testng*"
+          - "org.junit*"
+          - "org.assertj*"
+          - "org.hamcrest*"
+          - "org.testcontainers*"
+          - "org.mockito*"
+      build-plugins:
+        patterns:
+          - "com.github.ben-manes*"
+          - "io.spring.dependency-management*"
+          - "org.owasp.dependencycheck*"
+          - "org.jetbrains.kotlin*"
+      http-json:
+        patterns:
+          - "com.squareup.okhttp3*"
+          - "com.fasterxml.jackson*"
+          - "org.apache.httpcomponents*"
+      gradle-wrapper:
+        patterns:
+          - "gradle-wrapper"
+        update-types:
+          - "patch"
+          - "minor"
+          - "major"
+    ignore:
+      # пример: крупные мажоры только вручную (снимай если не нужно)
+      - dependency-name: "org.springframework.boot*"
+        update-types: ["version-update:semver-major"]
+
+  # Обновления GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "08:00"
+      timezone: "Europe/Kyiv"
+    labels: ["deps", "github-actions"]
+    open-pull-requests-limit: 10
