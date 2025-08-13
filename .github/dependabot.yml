@@ -4,9 +4,8 @@ updates:
   - package-ecosystem: "gradle"
     directory: "/"                    # корень репозитория
     schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "08:00"
+      interval: "daily"
+      time: "00:10"
       timezone: "Europe/Kyiv"
     open-pull-requests-limit: 20
     allow:
@@ -58,9 +57,8 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
-      day: "monday"
-      time: "08:00"
+      interval: "daily"
+      time: "00:10"
       timezone: "Europe/Kyiv"
     labels: ["deps", "github-actions"]
     open-pull-requests-limit: 10
