@@ -13,7 +13,7 @@ import lombok.ToString;
 @ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MovieDto {
-    private final Long id;//todo long
+    private final long id;
 
     private final String title;
 
@@ -22,7 +22,7 @@ public class MovieDto {
 
     private final Double popularity;//todo BigDecimal
 
-    public MovieDto(final Long id,
+    public MovieDto(final long id,
                     final String title,
                     final String originalTitle,
                     final Double popularity) {

@@ -6,15 +6,15 @@ import static org.themoviedb.data.enums.MediaType.MOVIE;
 
 public class UpdateWatchListRequestTemplate {
 
-    public MediaToWatchListDto createAddMovieToWatchListRequest(final Long movieDtoId) {
+    public MediaToWatchListDto createAddMovieToWatchListRequest(final long movieDtoId) {
         return createMovieToWatchListRequest(movieDtoId, true);
     }
 
-    public MediaToWatchListDto createRemoveMovieFromWatchListRequest(final Long movieDtoId) {
+    public MediaToWatchListDto createRemoveMovieFromWatchListRequest(final long movieDtoId) {
         return createMovieToWatchListRequest(movieDtoId, false);
     }
 
-    private MediaToWatchListDto createMovieToWatchListRequest(final Long mediaId,
+    private MediaToWatchListDto createMovieToWatchListRequest(final long mediaId,
                                                               final Boolean watchList) {
         return MediaToWatchListDto.mediaToWatchListDtoBuilder()
                 .mediaType(MOVIE.getName())

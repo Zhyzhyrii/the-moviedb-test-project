@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 public class RatedMovieDto extends MovieDto {
     private final BigDecimal rating;
 
-    public RatedMovieDto(final Long id,
+    public RatedMovieDto(final long id,
                          final String title,
                          final String originalTitle,
                          final Double popularity,

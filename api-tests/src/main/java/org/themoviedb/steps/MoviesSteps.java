@@ -37,9 +37,8 @@ public class MoviesSteps {
     }
 
     @Step("Remove rating for movie '{movieId}'")
-    public MoviesSteps removeMovieRating(final long movieId) {
+    public void removeMovieRating(final long movieId) {
         responseDto = moviesController.removeRating(movieId, 200);
-        return this;
     }
 
     public MoviesAsserts assertThat() {

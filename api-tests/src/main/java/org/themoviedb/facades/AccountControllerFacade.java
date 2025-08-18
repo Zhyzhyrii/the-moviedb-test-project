@@ -29,12 +29,12 @@ public class AccountControllerFacade {
         return accountController.updateWatchlist(body, statusCode);
     }
 
-    public Response addMovieToWatchlist(final Long movieDtoId) {
+    public Response addMovieToWatchlist(final long movieDtoId) {
         var body = updateWatchListRequestTemplate.createAddMovieToWatchListRequest(movieDtoId);
         return addMovieToWatchlist(body, 201);
     }
 
-    public Response removeMovieFromWatchlist(final Long movieDtoId) {
+    public Response removeMovieFromWatchlist(final long movieDtoId) {
         var body = updateWatchListRequestTemplate.createRemoveMovieFromWatchListRequest(movieDtoId);
         return accountController.updateWatchlist(body, 200);
     }
@@ -51,15 +51,15 @@ public class AccountControllerFacade {
                 .getResults();
     }
 
-    public List<RatedMovieDto> waitMovieRatingIsAddedAndGetRatedMovies(final Long movieId) {//todo long
+    public List<RatedMovieDto> waitMovieRatingIsAddedAndGetRatedMovies(final long movieId) {
         Predicate<List<RatedMovieDto>> predicate = movies -> movies.stream()
-                .anyMatch(movie -> movie.getId().equals(movieId));
+                .anyMatch(movie -> movie.getId() == movieId);
         return waitAndGetRatedMovies(predicate);
     }
 
-    public List<RatedMovieDto> waitMovieRatingIsRemovedAndGetRatedMovies(final Long movieId) {//todo long
+    public List<RatedMovieDto> waitMovieRatingIsRemovedAndGetRatedMovies(final long movieId) {
         Predicate<List<RatedMovieDto>> predicate = movies -> movies.stream()
-                .noneMatch(movie -> movie.getId().equals(movieId));
+                .noneMatch(movie -> movie.getId() == movieId);
         return waitAndGetRatedMovies(predicate);
     }
 

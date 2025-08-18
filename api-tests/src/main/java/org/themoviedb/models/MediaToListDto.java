@@ -9,5 +9,5 @@ import lombok.ToString;
 public class MediaToListDto {
 
     @JsonProperty("media_id")
-    private final Long mediaId;
+    private final long mediaId;
 }

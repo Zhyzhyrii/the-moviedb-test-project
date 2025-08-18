@@ -38,13 +38,13 @@ public class AccountSteps {
     }
 
     @Step("Add movie '{movieDtoId}' to watch list")
-    public AccountSteps addMovieToWatchlist(final Long movieDtoId) {
+    public AccountSteps addMovieToWatchlist(final long movieDtoId) {
         responseDto = accountControllerFacade.addMovieToWatchlist(movieDtoId);
         return this;
     }
 
     @Step("Remove movie '{movieDtoId}' from watch list")
-    public void removeMovieFromWatchlist(final Long movieDtoId) {
+    public void removeMovieFromWatchlist(final long movieDtoId) {
         responseDto = accountControllerFacade.removeMovieFromWatchlist(movieDtoId);
     }
 
@@ -61,13 +61,13 @@ public class AccountSteps {
     }
 
     @Step("Waiting for the movie rating to be added and get rated movies")
-    public AccountSteps waitMovieRatingIsAddedAndGetRatedMovies(final Long movieId) {//todo long
+    public AccountSteps waitMovieRatingIsAddedAndGetRatedMovies(final long movieId) {
         ratedMovies = accountControllerFacade.waitMovieRatingIsAddedAndGetRatedMovies(movieId);
         return this;
     }
 
     @Step("Waiting for the movie rating to be removed and get rated movies")
-    public void waitMovieRatingIsRemovedAndGetRatedMovies(final Long movieId) {//todo long
+    public void waitMovieRatingIsRemovedAndGetRatedMovies(final long movieId) {
         ratedMovies = accountControllerFacade.waitMovieRatingIsRemovedAndGetRatedMovies(movieId);
     }
 
