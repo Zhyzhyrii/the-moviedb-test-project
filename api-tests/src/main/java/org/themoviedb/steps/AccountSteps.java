@@ -12,7 +12,6 @@ import org.themoviedb.models.listdetails.ListDetailsDto;
 import org.themoviedb.models.movie.RatedMovieDto;
 
 import java.util.List;
-import java.util.function.Predicate;
 
 @Component
 public class AccountSteps {
@@ -61,9 +60,15 @@ public class AccountSteps {
         return this;
     }
 
-    @Step("Wait and get rated movies")
-    public AccountSteps waitAndGetRatedMovies(final Predicate<List<RatedMovieDto>> predicate) {//todo add that specific movie is added or not to List?
-        ratedMovies = accountControllerFacade.waitAndGetRatedMovies(predicate);
+    @Step("Waiting for the movie rating to be added and get rated movies")
+    public AccountSteps waitMovieRatingIsAddedAndGetRatedMovies(final Long movieId) {//todo long
+        ratedMovies = accountControllerFacade.waitMovieRatingIsAddedAndGetRatedMovies(movieId);
+        return this;
+    }
+
+    @Step("Waiting for the movie rating to be removed and get rated movies")
+    public AccountSteps waitMovieRatingIsRemovedAndGetRatedMovies(final Long movieId) {//todo long
+        ratedMovies = accountControllerFacade.waitMovieRatingIsRemovedAndGetRatedMovies(movieId);
         return this;
     }
 

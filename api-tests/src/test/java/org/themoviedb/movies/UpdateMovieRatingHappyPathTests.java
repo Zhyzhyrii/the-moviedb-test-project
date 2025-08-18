@@ -30,7 +30,7 @@ public class UpdateMovieRatingHappyPathTests extends BaseTest {
     public void setUp() {
         randomMovieDto = movieListsSteps.getRandomTopRatedMovie();
         moviesSteps.addMovieRating(randomMovieDto.getId(), getRandomElement(generateMovieRatingRange()));
-        accountSteps.waitAndGetRatedMovies(movies -> !movies.isEmpty());
+        accountSteps.waitMovieRatingIsAddedAndGetRatedMovies(randomMovieDto.getId());
     }
 
     @Test
@@ -47,7 +47,7 @@ public class UpdateMovieRatingHappyPathTests extends BaseTest {
         moviesSteps
                 .addMovieRating(randomMovieDto.getId(), rating);
         accountSteps
-                .waitAndGetRatedMovies(movies -> !movies.isEmpty())
+                .waitMovieRatingIsAddedAndGetRatedMovies(randomMovieDto.getId())
                 .assertThat()
                 .ratedMovieListContainsExpectedRatedMovie(randomMovieDto, rating);
     }

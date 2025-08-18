@@ -51,7 +51,19 @@ public class AccountControllerFacade {
                 .getResults();
     }
 
-    public List<RatedMovieDto> waitAndGetRatedMovies(final Predicate<List<RatedMovieDto>> predicate) {
+    public List<RatedMovieDto> waitMovieRatingIsAddedAndGetRatedMovies(final Long movieId) {//todo long
+        Predicate<List<RatedMovieDto>> predicate = movies -> movies.stream()
+                .anyMatch(movie -> movie.getId().equals(movieId));
+        return waitAndGetRatedMovies(predicate);
+    }
+
+    public List<RatedMovieDto> waitMovieRatingIsRemovedAndGetRatedMovies(final Long movieId) {//todo long
+        Predicate<List<RatedMovieDto>> predicate = movies -> movies.stream()
+                .noneMatch(movie -> movie.getId().equals(movieId));
+        return waitAndGetRatedMovies(predicate);
+    }
+
+    private List<RatedMovieDto> waitAndGetRatedMovies(final Predicate<List<RatedMovieDto>> predicate) {
         return WaitUtil.waitUntil(
                 this::getRatedMovies,
                 predicate,

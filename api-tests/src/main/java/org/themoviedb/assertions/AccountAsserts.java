@@ -73,10 +73,10 @@ public class AccountAsserts {
     @Step("Users list of rated movies should contain '{movieDto}' movie with '{}' rating")
     public void ratedMovieListContainsExpectedRatedMovie(final MovieDto movieDto,
                                                          final BigDecimal rating) {
-        var expectedRatedMovies = List.of(ratedMovieDtoMapper.movieDtoToRatedMovieDto(movieDto, rating));
+        var expectedRatedMovies = ratedMovieDtoMapper.movieDtoToRatedMovieDto(movieDto, rating);
         Assertions.assertThat(ratedMovies)
                 .as("Expected user list of rated movies to contain the movie %s, but it contains %s", expectedRatedMovies, ratedMovies)
-                .containsExactlyElementsOf(expectedRatedMovies);
+                .contains(expectedRatedMovies);
     }
 
     @Step("Users list of rated movies should not contain movie with id '{movieId}'")

@@ -9,12 +9,10 @@ import org.themoviedb.steps.AccountSteps;
 import org.themoviedb.steps.MovieListsSteps;
 import org.themoviedb.steps.MoviesSteps;
 
-import java.util.List;
-
 import static org.themoviedb.utils.DataGeneratorUtil.generateMovieRatingRange;
 import static org.themoviedb.utils.RandomUtil.getRandomElement;
 
-public class RemoveRatingToMovieHappyPathTests extends BaseTest {
+public class RemoveMovieRatingHappyPathTests extends BaseTest {
 
     @Autowired
     private MovieListsSteps movieListsSteps;
@@ -39,12 +37,10 @@ public class RemoveRatingToMovieHappyPathTests extends BaseTest {
         moviesSteps
                 .addMovieRating(movieId, rating);
         accountSteps
-                .waitAndGetRatedMovies(movies -> !movies.isEmpty());
+                .waitMovieRatingIsAddedAndGetRatedMovies(randomMovieDto.getId());
         moviesSteps
                 .removeMovieRating(movieId);
         accountSteps
-                .waitAndGetRatedMovies(List::isEmpty)
-                .assertThat()
-                .ratedMovieListDoesNotContainMovie(movieId);
+                .waitMovieRatingIsRemovedAndGetRatedMovies(randomMovieDto.getId());
     }
 }
