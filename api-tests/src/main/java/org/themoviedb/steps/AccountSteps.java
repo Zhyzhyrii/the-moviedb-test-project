@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 import org.themoviedb.assertions.AccountAsserts;
 import org.themoviedb.facades.AccountControllerFacade;
 import org.themoviedb.models.MediaToWatchListDto;
-import org.themoviedb.models.movie.MovieDto;
 import org.themoviedb.models.listdetails.ListDetailsDto;
+import org.themoviedb.models.movie.MovieDto;
 import org.themoviedb.models.movie.RatedMovieDto;
 
 import java.util.List;
@@ -67,9 +67,8 @@ public class AccountSteps {
     }
 
     @Step("Waiting for the movie rating to be removed and get rated movies")
-    public AccountSteps waitMovieRatingIsRemovedAndGetRatedMovies(final Long movieId) {//todo long
+    public void waitMovieRatingIsRemovedAndGetRatedMovies(final Long movieId) {//todo long
         ratedMovies = accountControllerFacade.waitMovieRatingIsRemovedAndGetRatedMovies(movieId);
-        return this;
     }
 
     public AccountAsserts assertThat() {

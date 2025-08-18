@@ -78,12 +78,4 @@ public class AccountAsserts {
                 .as("Expected user list of rated movies to contain the movie %s, but it contains %s", expectedRatedMovies, ratedMovies)
                 .contains(expectedRatedMovies);
     }
-
-    @Step("Users list of rated movies should not contain movie with id '{movieId}'")
-    public void ratedMovieListDoesNotContainMovie(final long movieId) {
-        var ratedMovieIds = ratedMovies.stream().map(RatedMovieDto::getId).toList();
-        Assertions.assertThat(ratedMovieIds)
-                .as("Expected the users list of rated movies not to contain the movie '%d', but it contains '%s'", movieId, ratedMovieIds)
-                .doesNotContain(movieId);
-    }
 }
