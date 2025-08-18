@@ -1,6 +1,5 @@
 version: 2
 updates:
-  # Gradle зависимости и плагины
   - package-ecosystem: "gradle"
     directory: "/"
     schedule:

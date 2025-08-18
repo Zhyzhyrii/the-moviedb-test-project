@@ -29,8 +29,8 @@ public class UpdateMovieRatingHappyPathTests extends BaseTest {
     @BeforeMethod
     public void setUp() {
         randomMovieDto = movieListsSteps.getRandomTopRatedMovie();
-        moviesSteps
-                .addMovieRating(randomMovieDto.getId(), getRandomElement(generateMovieRatingRange()));
+        moviesSteps.addMovieRating(randomMovieDto.getId(), getRandomElement(generateMovieRatingRange()));
+        accountSteps.waitAndGetRatedMovies(movies -> !movies.isEmpty());
     }
 
     @Test
