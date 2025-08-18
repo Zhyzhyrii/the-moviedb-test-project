@@ -17,7 +17,7 @@ public class RatedMovieDto extends MovieDto {
     public RatedMovieDto(final long id,
                          final String title,
                          final String originalTitle,
-                         final Double popularity,
+                         final BigDecimal popularity,
                          final BigDecimal rating) {
         super(id, title, originalTitle, popularity);
         this.rating = rating;
