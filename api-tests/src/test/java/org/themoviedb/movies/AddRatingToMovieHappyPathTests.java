@@ -45,7 +45,7 @@ public class AddRatingToMovieHappyPathTests extends BaseTest {
         moviesSteps
                 .addMovieRating(randomMovieDto.getId(), rating);
         accountSteps
-                .waitAndGetRatedMovies(movies -> !movies.isEmpty())
+                .waitMovieRatingIsAddedAndGetRatedMovies(randomMovieDto.getId())
                 .assertThat()
                 .ratedMovieListContainsExpectedRatedMovie(randomMovieDto, rating);
     }
