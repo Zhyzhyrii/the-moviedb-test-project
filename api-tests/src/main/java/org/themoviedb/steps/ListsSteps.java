@@ -41,13 +41,13 @@ public class ListsSteps {
     }
 
     @Step("Add movie to list")
-    public ListsSteps addMovieToList(final Long movieDtoId) {
+    public ListsSteps addMovieToList(final long movieDtoId) {
         responseDto = listsControllerFacade.addMovieToList(movieDtoId, listId);
         return this;
     }
 
     @Step("Remove movie from list")
-    public ListsSteps removeMovieFromList(final Long movieDtoId) {
+    public ListsSteps removeMovieFromList(final long movieDtoId) {
         responseDto = listsControllerFacade.removeMovieFromList(movieDtoId, listId);
         return this;
     }

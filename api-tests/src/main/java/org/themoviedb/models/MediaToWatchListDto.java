@@ -14,7 +14,7 @@ public class MediaToWatchListDto extends MediaToListDto {
     private final Boolean watchList;
 
     @Builder(builderMethodName = "mediaToWatchListDtoBuilder")
-    public MediaToWatchListDto(final Long mediaId,
+    public MediaToWatchListDto(final long mediaId,
                                final String mediaType,
                                final Boolean watchList) {
         super(mediaId);

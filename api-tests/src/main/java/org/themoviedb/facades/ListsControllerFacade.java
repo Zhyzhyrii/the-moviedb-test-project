@@ -28,7 +28,7 @@ public class ListsControllerFacade {
     }
 
     @Step("Add movie '{movieDtoId}' to list '{listId}'")
-    public Response addMovieToList(final Long movieDtoId, final long listId) {
+    public Response addMovieToList(final long movieDtoId, final long listId) {
         var body = MediaToListDto.builder()
                 .mediaId(movieDtoId)
                 .build();
@@ -36,7 +36,7 @@ public class ListsControllerFacade {
     }
 
     @Step("Remove movie '{movieDtoId}' from list '{listId}'")
-    public Response removeMovieFromList(final Long movieDtoId, final long listId) {
+    public Response removeMovieFromList(final long movieDtoId, final long listId) {
         var body = MediaToListDto.builder()
                 .mediaId(movieDtoId)
                 .build();

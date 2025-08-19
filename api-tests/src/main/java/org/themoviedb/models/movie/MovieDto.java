@@ -7,25 +7,27 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.math.BigDecimal;
+
 @Getter
 @EqualsAndHashCode
 @NoArgsConstructor(force = true)
 @ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MovieDto {
-    private final Long id;//todo long
+    private final long id;
 
     private final String title;
 
     @JsonProperty("original_title")
     private final String originalTitle;
 
-    private final Double popularity;//todo BigDecimal
+    private final BigDecimal popularity;
 
-    public MovieDto(final Long id,
+    public MovieDto(final long id,
                     final String title,
                     final String originalTitle,
-                    final Double popularity) {
+                    final BigDecimal popularity) {
         this.id = id;
         this.title = title;
         this.originalTitle = originalTitle;
