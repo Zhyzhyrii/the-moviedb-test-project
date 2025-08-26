@@ -20,3 +20,14 @@ test {
         useDefaultListeners = true
     }
 }
+
+def localSecrets = file("$rootDir/local.secrets.properties")
+if (localSecrets.exists()) {
+    def p = new Properties()
+    localSecrets.withInputStream { p.load(it) }
+
+    tasks.withType(Test).configureEach {
+        environment "API_TOKEN", p.getProperty("API_TOKEN")
+        environment "API_ACCOUNT_ID", p.getProperty("API_ACCOUNT_ID")
+    }
+}
