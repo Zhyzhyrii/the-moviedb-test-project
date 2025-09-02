@@ -12,7 +12,12 @@ import io.restassured.specification.FilterableResponseSpecification;
 
 import java.util.UUID;
 
-public class CustomAllureRestAssuredFilter extends AllureRestAssured {
+public final class CustomAllureRestAssuredFilter extends AllureRestAssured {
+
+    public CustomAllureRestAssuredFilter() {
+        super();
+        setRequestTemplate("http-request-masked.ftl");
+    }
 
     @Override
     public Response filter(final FilterableRequestSpecification requestSpec,
