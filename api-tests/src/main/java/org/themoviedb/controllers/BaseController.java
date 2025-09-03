@@ -28,7 +28,7 @@ public class BaseController {
     }
 
     private RequestSpecification initRequestSpecification() {
-//        TODO: to be stored on safe place and provided as a static field - initialized once (simulate behavior when token is overrided by each login request
+//        TODO: to be provided as a static field - initialized once (simulate behavior when token is overrided by each login request
         var authToken = apiConfig.getToken();
         return RestAssured.given()
                 .baseUri("https://api.themoviedb.org/3")
