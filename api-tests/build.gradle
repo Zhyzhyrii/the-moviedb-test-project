@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'tests.java-conventions'
-    id 'io.qameta.allure' version '2.12.0'
+    id 'io.qameta.allure' version '3.0.0'
 }
 
 group = 'org.themoviedb'
