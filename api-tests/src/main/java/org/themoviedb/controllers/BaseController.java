@@ -8,6 +8,7 @@ import io.restassured.specification.RequestSpecification;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.themoviedb.TokenProvider;
 import org.themoviedb.configs.ApiConfig;
 import org.themoviedb.filters.CustomAllureRestAssuredFilter;
 
@@ -17,6 +18,9 @@ public class BaseController {
     @Getter
     @Autowired
     private ApiConfig apiConfig;
+
+    @Autowired
+    private TokenProvider tokenProvider;
 
     private RequestSpecification requestSpecification;
 
@@ -28,11 +32,9 @@ public class BaseController {
     }
 
     private RequestSpecification initRequestSpecification() {
-//        TODO: to be provided as a static field - initialized once (simulate behavior when token is overrided by each login request
-        var authToken = apiConfig.getToken();
         return RestAssured.given()
                 .baseUri("https://api.themoviedb.org/3")
-                .header("Authorization", "Bearer " + authToken)
+                .header("Authorization", "Bearer " + tokenProvider.getAccessToken(apiConfig))
                 .contentType(ContentType.JSON)
                 .filters(new RequestLoggingFilter(), new ResponseLoggingFilter(), new CustomAllureRestAssuredFilter());
     }
