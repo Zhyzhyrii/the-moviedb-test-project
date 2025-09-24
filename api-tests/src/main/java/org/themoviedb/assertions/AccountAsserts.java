@@ -72,7 +72,7 @@ public class AccountAsserts {
                 .doesNotContain(listId);
     }
 
-    @Step("Users list of rated movies should contain '{movieDto}' movie with '{}' rating")
+    @Step("Users list of rated movies should contain '{movieDto}' movie with '{rating}' rating")
     public void ratedMovieListContainsExpectedRatedMovie(final MovieDto movieDto,
                                                          final BigDecimal rating) {
         var expectedRatedMovies = ratedMovieDtoMapper.movieDtoToRatedMovieDto(movieDto, rating);
