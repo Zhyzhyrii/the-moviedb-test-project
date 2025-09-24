@@ -68,7 +68,7 @@ public class AccountControllerFacade {
                 this::getRatedMovies,
                 predicate,
                 10_000,
-                1000
+                1_000
         );
     }
 

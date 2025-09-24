@@ -4,10 +4,10 @@ import io.restassured.response.Response;
 import org.springframework.stereotype.Component;
 import org.themoviedb.models.RatingDto;
 
-import static org.themoviedb.PathQueryParameters.MOVIE_ID;
-
 @Component
 public class MoviesController extends BaseController {
+
+    private static final String MOVIE_ID = "movie_id";
 
     public Response addRating(final long movieId,
                               final RatingDto body,

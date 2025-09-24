@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="All API tests" parallel="classes" thread-count="6">
+    <test name="All API tests">
+        <packages>
+            <package name="org.themoviedb.lists"/>
+            <package name="org.themoviedb.movies"/>
+            <package name="org.themoviedb.watchlist"/>
+        </packages>
+    </test>
+</suite>

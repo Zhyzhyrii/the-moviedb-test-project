@@ -6,10 +6,10 @@ import org.themoviedb.models.ListDto;
 import org.themoviedb.models.MediaToListDto;
 import org.themoviedb.models.listdetails.ListDetailsWithItemsDto;
 
-import static org.themoviedb.PathQueryParameters.LIST_ID;
-
 @Component
 public class ListsController extends BaseController {
+
+    private static final String LIST_ID = "list_id";
 
     public Response createList(final ListDto body,
                                final int statusCode) {

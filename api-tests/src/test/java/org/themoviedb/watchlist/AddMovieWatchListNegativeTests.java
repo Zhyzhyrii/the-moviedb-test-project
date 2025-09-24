@@ -7,6 +7,8 @@ import org.themoviedb.BaseTest;
 import org.themoviedb.models.MediaToWatchListDto;
 import org.themoviedb.steps.AccountSteps;
 
+import java.util.List;
+
 import static org.themoviedb.data.enums.MediaType.MOVIE;
 
 public class AddMovieWatchListNegativeTests extends BaseTest {
@@ -30,7 +32,7 @@ public class AddMovieWatchListNegativeTests extends BaseTest {
                 .addMovieToWatchlist(body, 404)
                 .getWatchListMovies()
                 .assertThat()
-                .watchListIsEmpty();
+                .watchListDoesNotContainExpectedMovieIds(List.of(body.getMediaId()));
     }
 
     @DataProvider
