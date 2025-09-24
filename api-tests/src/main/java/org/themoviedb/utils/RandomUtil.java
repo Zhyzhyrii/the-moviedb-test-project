@@ -16,7 +16,11 @@ public class RandomUtil {
         return list.get(ThreadLocalRandom.current().nextInt(list.size()));
     }
 
+    public static int getRandomInt(final int origin, final int bound) {
+        return ThreadLocalRandom.current().nextInt(origin, bound);
+    }
+
     public static String getRandomizedAlphaNumericValue(final int count) {
-        return RandomStringUtils.randomAlphanumeric(count);
+        return RandomStringUtils.secure().nextAlphanumeric(count);
     }
 }

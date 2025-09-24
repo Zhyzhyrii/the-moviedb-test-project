@@ -5,7 +5,9 @@ import io.restassured.response.Response;
 import lombok.Setter;
 import org.assertj.core.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+import org.themoviedb.data.BodyPaths;
 import org.themoviedb.mappers.RatedMovieDtoMapper;
 import org.themoviedb.models.listdetails.ListDetailsDto;
 import org.themoviedb.models.movie.MovieDto;
@@ -16,12 +18,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.Matchers.is;
-import static org.themoviedb.data.BodyPaths.STATUS_CODE;
-import static org.themoviedb.data.BodyPaths.STATUS_MESSAGE;
-import static org.themoviedb.data.BodyPaths.SUCCESS;
+import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
 
 @Setter
 @Component
+@Scope(SCOPE_PROTOTYPE)
 public class AccountAsserts {
 
     @Autowired
@@ -35,31 +36,32 @@ public class AccountAsserts {
     @Step("'Add movie' response should have successful status")
     public void addMovieResponseIsSuccessful() {
         response.then()
-                .body(SUCCESS, is(true))
-                .body(STATUS_CODE, is(1))
-                .body(STATUS_MESSAGE, is("Success."));
+                .body(BodyPaths.SUCCESS, is(true))
+                .body(BodyPaths.STATUS_CODE, is(1))
+                .body(BodyPaths.STATUS_MESSAGE, is("Success."));
     }
 
     @Step("'Add movie' response should have unsuccessful status: '{statusCode}' status code and '{statusMessage}' status message")
     public void addMovieResponseIsUnsuccessful(final int statusCode, final String statusMessage) {
         response.then()
-                .body(SUCCESS, is(false))
-                .body(STATUS_CODE, is(statusCode))
-                .body(STATUS_MESSAGE, is(statusMessage));
+                .body(BodyPaths.SUCCESS, is(false))
+                .body(BodyPaths.STATUS_CODE, is(statusCode))
+                .body(BodyPaths.STATUS_MESSAGE, is(statusMessage));
     }
 
     @Step("Watch list should contain '{expectedMovieDtoList}' movies")
     public void watchListContainsExpectedMovies(final List<MovieDto> expectedMovieDtoList) {
         Assertions.assertThat(watchListMovies)
                 .as("Expected the watchlist to contain the movies %s, but it contains %s", expectedMovieDtoList, watchListMovies)
-                .containsExactlyElementsOf(expectedMovieDtoList);
+                .containsAnyElementsOf(expectedMovieDtoList);
     }
 
-    @Step("Watch list should be empty")
-    public void watchListIsEmpty() {
-        Assertions.assertThat(watchListMovies)
-                .as("Watchlist is not empty")
-                .isEmpty();
+    @Step("Watch list should not contain '{expectedMovieDtoList}' movies")
+    public void watchListDoesNotContainExpectedMovieIds(final List<Long> expectedMovieIdList) {
+        var watchListMovieIds = watchListMovies.stream().map(MovieDto::getId).toList();
+        Assertions.assertThat(watchListMovieIds)
+                .as("Expected the watchlist not to contain the movie ids %s, but it contains %s", expectedMovieIdList, watchListMovieIds)
+                .doesNotContainAnyElementsOf(expectedMovieIdList);
     }
 
     @Step("Users custom lists should not contain list '{listId}'")

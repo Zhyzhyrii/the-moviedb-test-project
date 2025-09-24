@@ -8,6 +8,8 @@ import org.themoviedb.utils.RandomUtil;
 
 import java.util.List;
 
+import static org.themoviedb.Constants.MAX_PAGE_COUNT;
+
 @Component
 public class MovieListsControllerFacade {
 
@@ -19,18 +21,25 @@ public class MovieListsControllerFacade {
     }
 
     public MovieDto getRandomTopRatedMovie() {
-        return RandomUtil.getRandomElement(getTopRatedMoviesResults());
+        var results = getTopRatedMoviesResultsOnRandomPage();
+        return RandomUtil.getRandomElement(results);
     }
 
-    public MovieDto getRandomTopRatedMovie(final List<MovieDto> exceptMovies) {
-        var results = getTopRatedMoviesResults();
+    public MovieDto getRandomTopRatedMovieExcluding(final List<MovieDto> exceptMovies) {
+        var results = getTopRatedMoviesResultsOnRandomPage();
         results.removeAll(exceptMovies);
         return RandomUtil.getRandomElement(results);
     }
 
-    private List<MovieDto> getTopRatedMoviesResults() {
+    private List<MovieDto> getTopRatedMoviesResultsOnRandomPage() {
+        var randomPage = getRandomPage();
         return movieListsController
-                .getTopRatedMovies()
+                .getTopRatedMovies(randomPage)
                 .getResults();
+    }
+
+    private int getRandomPage() {
+        var totalPages = Math.min(MAX_PAGE_COUNT, movieListsController.getTopRatedMovies().getTotalPages());
+        return RandomUtil.getRandomInt(1, totalPages + 1);
     }
 }

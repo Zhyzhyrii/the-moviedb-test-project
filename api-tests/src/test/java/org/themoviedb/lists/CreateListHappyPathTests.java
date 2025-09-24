@@ -41,7 +41,7 @@ public class CreateListHappyPathTests extends BaseTest {
                 .addMovieToList(randomMovieDto.getId())
                 .getListMovies()
                 .assertThat()
-                .listContainsExpectedMovies(List.of(randomMovieDto));
+                .listContainsMovies(List.of(randomMovieDto));
     }
 
     @Test

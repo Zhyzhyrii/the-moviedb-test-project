@@ -9,10 +9,10 @@ import org.themoviedb.models.movie.MovieDto;
 import org.themoviedb.models.movie.RatedMovieDto;
 import org.themoviedb.models.wrappers.PaginatedResponse;
 
-import static org.themoviedb.PathQueryParameters.ACCOUNT_ID;
-
 @Component
 public class AccountController extends BaseController {
+
+    private static final String ACCOUNT_ID = "accountId";
 
     public PaginatedResponse<MovieDto> getWatchlistMovies() {
         return getRequestSpecification()

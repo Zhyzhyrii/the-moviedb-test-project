@@ -7,12 +7,12 @@ import java.util.List;
 
 @Value
 public class PaginatedResponse<T> {
-    long page;
+    int page;
     List<T> results;
 
     @JsonProperty("total_pages")
-    long totalPages;
+    int totalPages;
 
     @JsonProperty("total_results")
-    long totalResults;
+    int totalResults;
 }

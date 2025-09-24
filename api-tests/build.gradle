@@ -16,8 +16,10 @@ dependencies {
 }
 
 test {
-    useTestNG() {
+    useTestNG {
         useDefaultListeners = true
+        def suite = System.getProperty("suite", "src/test/resources/testng.xml")
+        suites suite
     }
 }
 

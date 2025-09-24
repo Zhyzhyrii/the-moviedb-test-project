@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.themoviedb.assertions.MoviesAsserts;
 import org.themoviedb.controllers.MoviesController;
@@ -11,7 +12,10 @@ import org.themoviedb.facades.MoviesControllerFacade;
 
 import java.math.BigDecimal;
 
+import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
+
 @Component
+@Scope(SCOPE_PROTOTYPE)
 public class MoviesSteps {
 
     private final MoviesControllerFacade moviesControllerFacade;

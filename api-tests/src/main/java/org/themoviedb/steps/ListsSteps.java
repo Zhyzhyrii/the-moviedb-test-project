@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import io.restassured.response.Response;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import org.themoviedb.assertions.ListsAsserts;
 import org.themoviedb.controllers.ListsController;
@@ -12,7 +13,10 @@ import org.themoviedb.models.listdetails.ItemDto;
 
 import java.util.List;
 
+import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
+
 @Component
+@Scope(SCOPE_PROTOTYPE)
 public class ListsSteps {
 
     private final ListsControllerFacade listsControllerFacade;
