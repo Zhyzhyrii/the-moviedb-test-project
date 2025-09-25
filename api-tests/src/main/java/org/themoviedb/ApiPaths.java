@@ -22,7 +22,7 @@ public final class ApiPaths {
     public static final class Lists {
 
         public static final String ROOT = "/list";
-        public static final String BY_ID = String.format("%s/{%s}", ROOT, PARAM.LIST_ID);
+        public static final String BY_ID = ROOT + "/{" + PARAM.LIST_ID + "}";
         public static final String ADD_ITEM = BY_ID + "/add_item";
         public static final String REMOVE_ITEM = BY_ID + "/remove_item";
 
@@ -34,7 +34,7 @@ public final class ApiPaths {
     public static final class Account {
 
         public static final String ROOT = "/account";
-        public static final String BY_ID = String.format("%s/{%s}", ROOT, PARAM.ACCOUNT_ID);
+        public static final String BY_ID = ROOT + "/{" + PARAM.ACCOUNT_ID + "}";
         public static final String WATCH_LIST = BY_ID + "/watchlist";
         public static final String WATCH_LIST_MOVIES = WATCH_LIST + "/movies";
         public static final String LISTS_MOVIES = BY_ID + "/lists";
@@ -56,7 +56,7 @@ public final class ApiPaths {
     public static final class Movies {
 
         public static final String ROOT = "/movie";
-        public static final String BY_ID = String.format("%s/{%s}", ROOT, PARAM.MOVIE_ID);
+        public static final String BY_ID = ROOT + "/{" + PARAM.MOVIE_ID + "}";
         public static final String RATING = BY_ID + "/rating";
 
         private Movies() {
