@@ -2,6 +2,7 @@ package org.themoviedb.controllers;
 
 import io.restassured.response.Response;
 import org.springframework.stereotype.Component;
+import org.themoviedb.ApiPaths;
 import org.themoviedb.models.ListDto;
 import org.themoviedb.models.MediaToListDto;
 import org.themoviedb.models.listdetails.ListDetailsWithItemsDto;
@@ -9,13 +10,11 @@ import org.themoviedb.models.listdetails.ListDetailsWithItemsDto;
 @Component
 public class ListsController extends BaseController {
 
-    private static final String LIST_ID = "list_id";
-
     public Response createList(final ListDto body,
                                final int statusCode) {
         return getRequestSpecification()
                 .body(body)
-                .post("/list")
+                .post(ApiPaths.Lists.ROOT)
                 .then()
                 .statusCode(statusCode)
                 .extract()
@@ -25,8 +24,8 @@ public class ListsController extends BaseController {
     public void deleteList(final long listId,
                            final int statusCode) {
         getRequestSpecification()
-                .pathParam(LIST_ID, listId)
-                .delete("/list/{list_id}")
+                .pathParam(ApiPaths.PARAM.LIST_ID, listId)
+                .delete(ApiPaths.Lists.BY_ID)
                 .then()
                 .statusCode(statusCode)
                 .extract()
@@ -38,8 +37,8 @@ public class ListsController extends BaseController {
                                    final int statusCode) {
         return getRequestSpecification()
                 .body(body)
-                .pathParam(LIST_ID, listId)
-                .post("/list/{list_id}/add_item")
+                .pathParam(ApiPaths.PARAM.LIST_ID, listId)
+                .post(ApiPaths.Lists.ADD_ITEM)
                 .then()
                 .statusCode(statusCode)
                 .extract()
@@ -51,8 +50,8 @@ public class ListsController extends BaseController {
                                         final int statusCode) {
         return getRequestSpecification()
                 .body(body)
-                .pathParam(LIST_ID, listId)
-                .post("/list/{list_id}/remove_item")
+                .pathParam(ApiPaths.PARAM.LIST_ID, listId)
+                .post(ApiPaths.Lists.REMOVE_ITEM)
                 .then()
                 .statusCode(statusCode)
                 .extract()
@@ -61,8 +60,8 @@ public class ListsController extends BaseController {
 
     public ListDetailsWithItemsDto getListDetails(final long listId) {
         return getRequestSpecification()
-                .pathParam(LIST_ID, listId)
-                .get("/list/{list_id}")
+                .pathParam(ApiPaths.PARAM.LIST_ID, listId)
+                .get(ApiPaths.Lists.BY_ID)
                 .then()
                 .statusCode(200)
                 .extract()

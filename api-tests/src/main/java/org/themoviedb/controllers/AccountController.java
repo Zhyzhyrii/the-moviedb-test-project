@@ -3,6 +3,7 @@ package org.themoviedb.controllers;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.response.Response;
 import org.springframework.stereotype.Component;
+import org.themoviedb.ApiPaths;
 import org.themoviedb.models.MediaToWatchListDto;
 import org.themoviedb.models.listdetails.ListDetailsDto;
 import org.themoviedb.models.movie.MovieDto;
@@ -12,12 +13,10 @@ import org.themoviedb.models.wrappers.PaginatedResponse;
 @Component
 public class AccountController extends BaseController {
 
-    private static final String ACCOUNT_ID = "accountId";
-
     public PaginatedResponse<MovieDto> getWatchlistMovies() {
         return getRequestSpecification()
-                .pathParam(ACCOUNT_ID, getApiConfig().getAccountId())
-                .get("/account/{accountId}/watchlist/movies")
+                .pathParam(ApiPaths.PARAM.ACCOUNT_ID, getApiConfig().getAccountId())
+                .get(ApiPaths.Account.WATCH_LIST_MOVIES)
                 .then()
                 .statusCode(200)
                 .extract()
@@ -27,8 +26,8 @@ public class AccountController extends BaseController {
 
     public PaginatedResponse<ListDetailsDto> getUserLists() {
         return getRequestSpecification()
-                .pathParam(ACCOUNT_ID, getApiConfig().getAccountId())
-                .get("/account/{accountId}/lists")
+                .pathParam(ApiPaths.PARAM.ACCOUNT_ID, getApiConfig().getAccountId())
+                .get(ApiPaths.Account.LISTS_MOVIES)
                 .then()
                 .statusCode(200)
                 .extract()
@@ -38,8 +37,8 @@ public class AccountController extends BaseController {
 
     public PaginatedResponse<RatedMovieDto> getRatedMovies() {
         return getRequestSpecification()
-                .pathParam(ACCOUNT_ID, getApiConfig().getAccountId())
-                .get("/account/{accountId}/rated/movies")
+                .pathParam(ApiPaths.PARAM.ACCOUNT_ID, getApiConfig().getAccountId())
+                .get(ApiPaths.Account.RATED_MOVIES)
                 .then()
                 .statusCode(200)
                 .extract()
@@ -50,9 +49,9 @@ public class AccountController extends BaseController {
     public Response updateWatchlist(final MediaToWatchListDto body,
                                     final int statusCode) {
         return getRequestSpecification()
-                .pathParam(ACCOUNT_ID, getApiConfig().getAccountId())
+                .pathParam(ApiPaths.PARAM.ACCOUNT_ID, getApiConfig().getAccountId())
                 .body(body)
-                .post("/account/{accountId}/watchlist")
+                .post(ApiPaths.Account.WATCH_LIST)
                 .then()
                 .statusCode(statusCode)
                 .extract()
