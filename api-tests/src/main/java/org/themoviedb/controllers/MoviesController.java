@@ -2,20 +2,19 @@ package org.themoviedb.controllers;
 
 import io.restassured.response.Response;
 import org.springframework.stereotype.Component;
+import org.themoviedb.ApiPaths;
 import org.themoviedb.models.RatingDto;
 
 @Component
 public class MoviesController extends BaseController {
 
-    private static final String MOVIE_ID = "movie_id";
-
     public Response addRating(final long movieId,
                               final RatingDto body,
                               final int statusCode) {
         return getRequestSpecification()
-                .pathParam(MOVIE_ID, movieId)
+                .pathParam(ApiPaths.PARAM.MOVIE_ID, movieId)
                 .body(body)
-                .post("/movie/{movie_id}/rating")
+                .post(ApiPaths.Movies.RATING)
                 .then()
                 .statusCode(statusCode)
                 .extract()
@@ -24,8 +23,8 @@ public class MoviesController extends BaseController {
 
     public Response removeRating(final long movieId, final int statusCode) {
         return getRequestSpecification()
-                .pathParam(MOVIE_ID, movieId)
-                .delete("/movie/{movie_id}/rating")
+                .pathParam(ApiPaths.PARAM.MOVIE_ID, movieId)
+                .delete(ApiPaths.Movies.RATING)
                 .then()
                 .statusCode(statusCode)
                 .extract()
