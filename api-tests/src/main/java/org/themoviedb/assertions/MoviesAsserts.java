@@ -5,10 +5,9 @@ import io.restassured.response.Response;
 import lombok.Setter;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.themoviedb.data.BodyPaths;
 
-import static org.hamcrest.Matchers.is;
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
+import static org.themoviedb.assertions.ResponseAssertions.assertSuccess;
 
 @Setter
 @Component
@@ -19,17 +18,11 @@ public class MoviesAsserts {
 
     @Step("'Add rating to movie' response should have successful status")
     public void addRatingToMovieResponseIsSuccessful() {
-        response.then()
-                .body(BodyPaths.SUCCESS, is(true))
-                .body(BodyPaths.STATUS_CODE, is(1))
-                .body(BodyPaths.STATUS_MESSAGE, is("Success."));//todo to template. I have already used it
+        assertSuccess(response, ResponseStatus.SUCCESS);
     }
 
     @Step("'Update movie rating' response should have successful status")
     public void updateMovieRatingResponseIsSuccessful() {
-        response.then()
-                .body(BodyPaths.SUCCESS, is(true))
-                .body(BodyPaths.STATUS_CODE, is(12))
-                .body(BodyPaths.STATUS_MESSAGE, is("The item/record was updated successfully."));
+        assertSuccess(response, ResponseStatus.UPDATED_SUCCESS);
     }
 }
