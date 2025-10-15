@@ -7,7 +7,6 @@ import org.assertj.core.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.themoviedb.data.BodyPaths;
 import org.themoviedb.mappers.RatedMovieDtoMapper;
 import org.themoviedb.models.listdetails.ListDetailsDto;
 import org.themoviedb.models.movie.MovieDto;
@@ -17,8 +16,9 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.hamcrest.Matchers.is;
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
+import static org.themoviedb.assertions.ResponseAssertions.assertFailure;
+import static org.themoviedb.assertions.ResponseAssertions.assertSuccess;
 
 @Setter
 @Component
@@ -35,18 +35,12 @@ public class AccountAsserts {
 
     @Step("'Add movie' response should have successful status")
     public void addMovieResponseIsSuccessful() {
-        response.then()
-                .body(BodyPaths.SUCCESS, is(true))
-                .body(BodyPaths.STATUS_CODE, is(1))
-                .body(BodyPaths.STATUS_MESSAGE, is("Success."));
+        assertSuccess(response, ResponseStatus.SUCCESS);
     }
 
     @Step("'Add movie' response should have unsuccessful status: '{statusCode}' status code and '{statusMessage}' status message")
     public void addMovieResponseIsUnsuccessful(final int statusCode, final String statusMessage) {
-        response.then()
-                .body(BodyPaths.SUCCESS, is(false))
-                .body(BodyPaths.STATUS_CODE, is(statusCode))
-                .body(BodyPaths.STATUS_MESSAGE, is(statusMessage));
+        assertFailure(response, statusCode, statusMessage);
     }
 
     @Step("Watch list should contain '{expectedMovieDtoList}' movies")

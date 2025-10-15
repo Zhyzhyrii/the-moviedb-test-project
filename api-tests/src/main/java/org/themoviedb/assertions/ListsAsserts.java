@@ -7,15 +7,14 @@ import org.assertj.core.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
-import org.themoviedb.data.BodyPaths;
 import org.themoviedb.mappers.ItemDtoMapper;
 import org.themoviedb.models.listdetails.ItemDto;
 import org.themoviedb.models.movie.MovieDto;
 
 import java.util.List;
 
-import static org.hamcrest.Matchers.is;
 import static org.springframework.beans.factory.config.ConfigurableBeanFactory.SCOPE_PROTOTYPE;
+import static org.themoviedb.assertions.ResponseAssertions.assertSuccess;
 
 @Setter
 @Component
@@ -31,10 +30,7 @@ public class ListsAsserts {
 
     @Step("'Create list' response should have successful status")
     public void createListResponseIsSuccessful() {
-        response.then()
-                .body(BodyPaths.SUCCESS, is(true))
-                .body(BodyPaths.STATUS_CODE, is(1))
-                .body(BodyPaths.STATUS_MESSAGE, is("Success."));
+        assertSuccess(response, ResponseStatus.SUCCESS);
     }
 
     @Step("List '{listId}' should contain '{movieDtoList}' movies")
