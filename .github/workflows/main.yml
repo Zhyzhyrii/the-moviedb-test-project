@@ -37,7 +37,7 @@ jobs:
         run: ./gradlew clean test -p api-tests
 
       - name: Load test report history
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
         if: always()
         continue-on-error: true
         with:
